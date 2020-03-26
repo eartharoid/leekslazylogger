@@ -1,0 +1,62 @@
+Logger.c/color/colour/colors/colours.hex()
+                                    .hexBg()
+                                    .rgb()
+                                    .rgbBg()
+                                    .8bit()
+                                    .8bitBg()
+                                    .[actualColourCode]()
+
+Logger.s/style/styles.inverse()
+                     .dim()
+                     .blink()
+                     .bold()
+                     .strike() / .strikethrough
+                     .under() / .underlineline()
+                     .italic()
+                     .reset()
+
+Logger.basic() // no title
+Logger.console() // INFO title
+Logger.info() // INFO title with colour (customisable)
+Logger.success()
+Logger.debug()
+Logger.warn()
+Logger.error()
+Logger.custom.MYCUSTOMTYPE()
+Logger.type.MYCUSTOMTYPE()
+
+
+// COLOUR CODES                     
+
+&a greenBright
+&b blueBright
+&c redBright
+&d magentaBright
+&e yellowBright
+&f white
+
+&0 black
+&1 blue
+&2 green
+&3 cyan
+&4 red
+&5 magenta
+&6 yellow
+&7 blackBright
+&8 black bgBlackBright
+&9 cyanBright
+
+
+// STYLE CODES
+
+&i inverse *non-standard
+&j dim *non-standard
+&k blink
+&l bold
+&m strikethrough
+&n underline
+&o italic
+&r reset
+
+
+// log.console("&a&llight green and bold") // -> "light green and bold" in bold light green
