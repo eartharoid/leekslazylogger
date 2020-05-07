@@ -4,67 +4,76 @@
  * @description An easy-to-use and lightweight console logger for Node.JS
  * @license MIT
  * 
- * default styles and formatting codes storage
+ * defaults and formatting codes storage
  * 
  */
 
 module.exports.defaultTypes = {
-    basic: {title: null, c: null},
-    console: {title: "INFO", c: null},
-    info: {title: "INFO", c: ["cyan"]},
-    success: {title: "SUCCESS", c: ["green"]},
-    debug: {title: "DEBUG", c: ["blue"]},
-    notice: {title: "NOTICE", c: ["black", "bgYellowBright"]},
-    warn: {title: "WARN", c: ["yellowBright"]},
-    error: {title: "ERROR", c: ["red"]}
+	basic: {title: null, c: null},
+	console: {title: 'INFO', c: null},
+	info: {title: 'INFO', c: ['cyan']},
+	success: {title: 'SUCCESS', c: ['green']},
+	debug: {title: 'DEBUG', c: ['blue']},
+	notice: {title: 'NOTICE', c: ['black', 'bgYellowBright']},
+	warn: {title: 'WARN', c: ['yellowBright']},
+	error: {title: 'ERROR', c: ['red']}
+};
+
+module.exports.defaults = {
+	name: 'A leekslazylogger project',
+	logToFile: true,
+	timestamp: 'HH:mm:ss',
+	dateFormat: 'YYYY-MM-DD',
+	maxAge: 7,
+	keepSilent: false
 };
 
 // 24 colouring and styling codes 
 module.exports.codes = {
-    // first 10 of 16 colours           --FOREGROUND---
-    "&0": "black",
-    "&1": "blue",
-    "&2": "green",
-    "&3": "cyan",
-    "&4": "red",
-    "&5": "magenta",
-    "&6": "yellow",
-    "&7": "blackBright",
-    "&8": "whiteBright",
-    "&9": "cyanBright",
-    // last 6 of 16 colours, lighter    ---FOREGROUND---
-    "&a": "greenBright",
-    "&b": "blueBright",
-    "&c": "redBright",
-    "&d": "magentaBright",
-    "&e": "yellowBright",
-    "&f": "white",
-    // 8 styling codes                    ---STYLES---
-    "&i": "inverse",
-    "&j": "dim",
-    "&k": "blink",
-    "&l": "bold",
-    "&m": "strikethrough",
-    "&n": "underline",
-    "&o": "italic",
-    "&r": "reset",   
-    // first 10 of 16 colours           ---BACKGROUND---
-    "&!0": "bgBlack",
-    "&!1": "bgBlue",
-    "&!2": "bgGreen",
-    "&!3": "bgCyan",
-    "&!4": "bgRed",
-    "&!5": "bgMagenta",
-    "&!6": "bgYellow",
-    "&!7": "bgBlackBright",
-    "&!8": "bgBlackBright",
-    "&!9": "bgCyanBright",
-    // last 6 of 16 colours, lighter    ---BACKGROUND---
-    "&!a": "bgGreenBright",
-    "&!b": "bgBlueBright",
-    "&!c": "bgRedBright",
-    "&!d": "bgMagentaBright",
-    "&!e": "bgYellowBright",
-    "&!f": "bgWhite",
+	// first 10 of 16 colours           --FOREGROUND---
+	'&0': ['colors', 'black'],
+	'&1': ['colors', 'blue'],
+	'&2': ['colors', 'green'],
+	'&3': ['colors', 'cyan'],
+	'&4': ['colors', 'red'],
+	'&5': ['colors', 'magenta'],
+	'&6': ['colors', 'yellow'],
+	'&7': ['colors', 'blackBright'],
+	'&8': ['colors', 'whiteBright'],
+	'&9': ['colors', 'cyanBright'],
+	// last 6 of 16 colours, lighter    ---FOREGROUND---
+	'&a': ['colors', 'greenBright'],
+	'&b': ['colors', 'blueBright'],
+	'&c': ['colors', 'redBright'],
+	'&d': ['colors', 'magentaBright'],
+	'&e': ['colors', 'yellowBright'],
+	'&f': ['colors', 'white'],
+	// 8 styling codes                    ---STYLES---
+	'&i': ['styles', 'inverse'],
+	'&j': ['styles', 'dim'],
+	'&k': ['styles', 'blink'],
+	'&l': ['styles', 'bold'],
+	'&m': ['styles', 'strikethrough'],
+	'&n': ['styles', 'underline'],
+	'&o': ['styles', 'italic'],
+	'&r': ['styles', 'reset'],   
+	// first 10 of 16 colours           ---BACKGROUND---
+	'&!0': ['colors', 'bgBlack'],
+	'&!1': ['colors', 'bgBlue'],
+	'&!2': ['colors', 'bgGreen'],
+	'&!3': ['colors', 'bgCyan'],
+	'&!4': ['colors', 'bgRed'],
+	'&!5': ['colors', 'bgMagenta'],
+	'&!6': ['colors', 'bgYellow'],
+	'&!7': ['colors', 'bgBlackBright'],
+	'&!8': ['colors', 'bgBlackBright'],
+	'&!9': ['colors', 'bgCyanBright'],
+	// last 6 of 16 colours, lighter    ---BACKGROUND---
+	'&!a': ['colors', 'bgGreenBright'],
+	'&!b': ['colors', 'bgBlueBright'],
+	'&!c': ['colors', 'bgRedBright'],
+	'&!d': ['colors', 'bgMagentaBright'],
+	'&!e': ['colors', 'bgYellowBright'],
+	'&!f': ['colors', 'bgWhite'],
 };
 

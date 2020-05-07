@@ -1,5 +1,5 @@
 node_modules/
-bin/
+logs/
 *.log
 package-lock.json
 store/

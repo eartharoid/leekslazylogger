@@ -1,44 +1,45 @@
 {
   "name": "leekslazylogger",
   "version": "2.0.0",
-  "description": "An easy-to-use and lightweight console logger for Node.JS",
+  "description": "An easy-to-use and lightweight console logger for Node.JS with colour/styles & file support.",
   "main": "index.js",
   "dependencies": {
-    "dtstamp": "^1.0.5",
+    "@eartharoid/dtf": "^1.0.6",
     "leeks.js": "^0.0.8"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node test.js"
+    "test": "node test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eartharoid/leeks-lazy-logger.git"
+    "url": "git+https://github.com/eartharoid/leekslazylogger.git"
   },
   "author": "eartharoid",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eartharoid/leeks-lazy-logger/issues"
+    "url": "https://github.com/eartharoid/leekslazylogger/issues"
   },
   "homepage": "https://lazylogger.eartharoid.me/",
+  "homepageDisplayURL": "lazylogger.eartharoid.me",
+  "shortURL": "https://leeks.js.org/logger",
+  "shortDisplayURL": "leeks.js.org/logger",
   "keywords": [
     "console",
     "terminal",
     "log",
+    "logger",
     "file",
+    "files",
     "color",
-    "colour",
     "colors",
+    "colour",
     "colours",
     "formatting",
-    "ansi",
     "ansi-styles",
     "ansi-colors",
     "easy-to-use",
-    "quick",
-    "simple",
-    "logger",
-    "loggers",
+    "lazy",
     "leeks",
     "leeks.js"
   ]
