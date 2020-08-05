@@ -1,0 +1,9 @@
+node_modules/
+logs/
+site/
+*.log
+package-lock.json
+
+docs/
+.github/
+mkdocs.yml

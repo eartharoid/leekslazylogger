@@ -4,47 +4,46 @@ const log = new Logger({
 	custom: {
 		ex1: {
 			title: 'normal example',
-			foreground: 'black', // does not fit any other, leeks colour
-			bacgkround: 'bgCyan', // black text on cyan backgrond
-			styles: ['bold', '&n']
+			foreground: 'black',
+			background: 'bgCyan'
 		},
 		ex2: {
 			title: 'hex example',
-			foreground: '#00FF21' // starts with #, hex
+			foreground: '#00FF21',
+			type: 'warn'
 		},
 		ex3: {
 			title: 'rgb example',
-			foreground: ['0', '255', '255'] // is an array, rgb 
+			foreground: '0, 255, 255',
+			type: 'error'
 		},
 		ex4: {
 			title: '8bit example',
-			foreground: 16 // parses to a number, 8bit
+			foreground: 16 
 		},
 		ex5: {
 			title: 'another example',
-			foreground: '&a', // starts with &, color code
-			background: '&!2' // light green text on dark gren background 
+			foreground: '&1',
+			background: '&!2'
 		}
 	},
 	logToFile: true,
 	maxAge: -1,
 	keepSilent: false,
 	daily: true,
+	debug: true,
 });
-const colour = log.c;
 
-let awesome = colour.cyanBright;
+log.console('&b' + log.options.name);
+log.error({error: 'test'});
 
-console.log(awesome(log.options.name));
+log.info('&1whiteBright', ['black', 'whiteBright']); // bg works if you forget to use a bg colour name
 
-// let text1 = log.format("first part", {c: ["black", "bgBlueBright"], s: ["bold", "underline"]})
-// let text2 = log.format("second part", {c: ["#000000"], s: ["bold", "underline"]})
-// log.console(text1 + text2)
-// log.console("text", {c: ["f", "b"], s: ["bold", "underline"]})
+log.console('rgb', ['0,0,253', '255,255,255']);
+log.console('hex', ['#009999', '#111111']);
+log.console('8bit', [16, 11]);
+log.console('code', ['&3', '&1']); // &1 will become &!1
 
-log.info('message with %s', {c: ['foreground', 'background'], s: ['bold', 'underline'], insert:['string insertion']});
-
-console.log(log.c.redBright('red'));
 log.console('&a&lThis should be light &c&o&kgreen&a&l and &nbold');
 log.console('&00&r     &11&r     &22&r     &33&r     &44&r     &55&r     &66&r     &77&r     &88&r     &99');
 log.console('&aa&r     &bb&r     &cc&r     &dd&r     &ee&r     &ff');
@@ -53,8 +52,6 @@ log.console('&!a!a&r    &!b!b&r    &!c!c&r    &!d!d&r    &!e!e&r    &!f!f&r');
 
 log.console('&a&l&!3(codes)');
 
-
-
 log.multi(log); // must be called in main before creating a Child Logger in another file
 log.console('&0&!9START OF T2');
 require('./t2')();
@@ -62,7 +59,7 @@ log.console('&0&!9END OF T2');
 
 
 
-console.log('should be white');
+log.console('should be white');
 
 log.info('INFOOOOOO');
 log.warn('warning');
@@ -78,7 +75,8 @@ log.info('info');
 log.success('success');
 log.debug('debug');
 log.warn('warn');
+log.notice('notice');
 log.error('error');
 
-// require('.').init() // test legacy warning message
+// require('.').init(); // test legacy warning message
 

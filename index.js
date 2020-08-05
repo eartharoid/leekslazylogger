@@ -19,14 +19,17 @@ let log;
 const plural = (word, num) => num !== 1 ? word + 's' : word;
 
 const codesRegex = /&[0-9a-fi-or]|&![0-9a-f]/g;
-const replaceCodes = (string) => string.replace(codesRegex, (cs) => `\x1b[${termCodes[data.codes[cs][0]][data.codes[cs][1]]}m`) + '\x1b[0m';
+const replaceCodes = string => string.replace(codesRegex, cs => `\x1b[${termCodes[data.codes[cs][0]][data.codes[cs][1]]}m`) + '\x1b[0m';
 
-// check if unecessary messages have been disabled and if not, send them
+// check if unnecessary messages have been disabled and if not, send them
 const verbose = (silent, text) => {
 	if (silent === false) return console.log(text);
 };
 
-const strip = t => t.replace(/\u001b\[.*?m/g, '');
+const strip = t => t.replace(/\u001b\[.*?m/g, '').replace(codesRegex, ''); // remove leeks colours and &codes
+
+const colourType = str => typeof str === 'number' ? 'eightBit' : str.includes(',') ? 'rgb' : str.startsWith('#') ? 'hex' : str.startsWith('&') ? 'CODE' : 'colours';
+const bgColourType = str => typeof str === 'number' ? 'eightBitBg' : str.includes(',') ? 'rgbBg' : str.startsWith('#') ? 'hexBg' : str.startsWith('&') ? 'CODE' : 'colours';
 
 const one_day = 1000 * 60 * 60 * 24;
 const clearOldFiles = (maxAge, keepSilent, stamp, callback) => {
@@ -45,7 +48,7 @@ const clearOldFiles = (maxAge, keepSilent, stamp, callback) => {
 };
 
 const createNewFile = (o, path) => {
-	if (!fs.existsSync('./logs')) { // create logs folder if it doesnt exist
+	if (!fs.existsSync('./logs')) { // create logs folder if it doesn't exist
 		fs.mkdirSync('./logs');
 		verbose(o.keepSilent, `[${timestamp(o.timestamp)} | LOGGER] No logs directory found, creating one for you`);
 	}
@@ -68,21 +71,20 @@ const createNewFile = (o, path) => {
 const fileService = (o, path) => {
 	if (o.daily === false) return path; // stop here if daily logging is disabled
 	let stamp = `./logs/${timestamp(o.dateFormat)}.log`;
-	if (path !== stamp) {
-		path = stamp;
-		return new Promise((resolve) => {
-			// make a new log
-			createNewFile(o, path).then(() => resolve(path));
-		});
-	} else {
-		return path;
-	}
+	return new Promise((resolve) => {
+		if (path !== stamp) {
+			path = stamp;
+			createNewFile(o, path).then(() => resolve(path)); // make a new file and return it's path
+		} else {
+			resolve(path); // return same path
+		}
+	});
 
 };
 
-class UnknownCodeError extends Error {
+class LoggerError extends Error {
 	constructor(message) {
-		console.log(leeks.colours.yellowBright(`[LOGGER] Logger error thrown. Perhaps you should read the documentation at ${pkg.homepageDisplayURL} ..?`));
+		console.log(leeks.colours.yellowBright(`[LOGGER] Logger error thrown. Perhaps you should read the documentation at ${pkg.homepage} ..?`));
 		super(message);
 		// this.name = 'UnknownCodeError';
 	}
@@ -106,8 +108,8 @@ class Logger {
 		if (!o) o = {};
 		if (o.child) {
 			if (!log) {
-				console.error(leeks.colours.redBright(`[LOGGER] You can't create a child logger before calling the .multi() function (see documentation at ${pkg.homepageDisplayURL})`));
-				throw new Error('Logger not initialised for child loggers.');
+				console.error(leeks.colours.redBright(`[LOGGER] You can't create a child logger before calling the .multi() function (see documentation at ${pkg.homepage})`));
+				throw new LoggerError('Logger not initialised for child loggers.');
 			}
 			for (let item in log) {
 				this[item] = log[item];
@@ -116,35 +118,15 @@ class Logger {
 
 		this.options = {};
 
-		// make leeks colours and styles available
-		this.c = leeks.colours;
-		this.color = leeks.colors;
-		this.colors = leeks.colors;
-		this.colour = leeks.colours;
-		this.colours = leeks.colours;
-		this.s = leeks.styles;
-		this.style = leeks.styles;
-		this.styles = leeks.styles;
-
-		this.supportsColor = leeks.supportsColor;
-		this.supportsColour = leeks.supportsColour;
-
-		this.hex = leeks.hex;
-		this.hexBg = leeks.hexBg;
-		this.rgb = leeks.rgb;
-		this.rgbBg = leeks.rgbBg;
-		this.eight = leeks.eightBit;
-		this.eightBg = leeks.eightBitBg;
-
 		this.dtf = (str) => {
 			return timestamp(str);
 		};
 
 		/*
-         * 
-         * OPTIONS AND OTHER STUFF
-         * 
-         */
+		 * 
+		 * OPTIONS AND OTHER STUFF
+		 * 
+		 */
 
 
 		if (o.child) {
@@ -176,6 +158,9 @@ class Logger {
 			// hide logger startup messages? cleaner but less informative.
 			this.options.keepSilent = o.keepSilent ? o.keepSilent : data.defaults.keepSilent;
 
+			// show debug messages?
+			this.options.debug = o.debug ? o.debug : data.defaults.debug;
+
 			// 1 log file per day or 1 per run?
 			if (o.daily === false) {
 				this.options.daily = false;
@@ -187,28 +172,31 @@ class Logger {
 		}
 
 		// timestamp function
-		// this.stamp = () => timestamp(this.options.timestamp);
+		this.stamp = () => timestamp(this.options.timestamp);
 
 
 		// STOP HERE IF IT IS A CHILD LOGGER
 		if (o.child === true) return;
 
 		/*
-         * 
-         * SET UP THE DEFAULT LOG TYPES
-         * 
-         */
+		 * 
+		 * SET UP THE DEFAULT LOG TYPES
+		 * 
+		 */
 
 		for (let type in data.defaultTypes) {
-			// check if is a string before applying colours!!!
-			// check colour support, log to console, log to file (if enabled)
 			/**
-             * @param {string} text - the text to log
-             * @param {object} options - colours, styles, and insertions
-             */
-			this[type] = async (text, options) => {
+			 * @param {string} text - the text to log
+			 * @param {object} options - colours
+			 */
+			this[type] = async (text, colour) => {
 				let t = data.defaultTypes[type],
-					title = t.title ? ` | ${t.title.toUpperCase()}` : '';
+					title = t.title ? ` | ${t.title.toUpperCase()}` : '',
+					pre = `[${this.stamp() + title}] `;
+
+				if (t.log === 'debug' && this.options.debug === false) return;
+
+				if (typeof text !== 'string') text = JSON.stringify(text, null, 2); // stringify objects
 
 				if (o.logToFile) {
 					this.path = await fileService(this.options, this.path); // check to see if a new file should be created	
@@ -218,12 +206,49 @@ class Logger {
 				}
 
 				if (leeks.supportsColour) {
-					let fg = 1,
-						bg = 2,
-						pre = (`[${this.stamp() + title}] ${replaceCodes(text)}`);
-					console.log(leeks.colours[fg](pre));
+					let fg = colour ? colour[0] : t.c[0] || t.c[0];
+					let bg = colour ? colour[1] : t.c[1] || t.c[1];
+					let fgt = 'colours',
+						bgt = 'colours';
+
+					if (colour) {
+						fgt = colourType(fg);
+						if (bg) {
+							bgt = bgColourType(bg);
+
+							if (bgt == 'colours' && !bg.startsWith('bg'))
+								bg = 'bg' + bg[0].toUpperCase() + bg.substring(1); // convert FG colour name to BG
+
+							if (bgt === 'CODE') {
+								bgt = 'colours';
+								if (bg[1] !== '!')
+									bg = '&!' + bg[1];
+								bg = data.codes[bg][1];
+
+							}
+
+
+							if (bgt === 'rgb') bg = bg.replace(' ', '').split(',');
+						}
+
+						if (fgt === 'CODE')
+							fgt = 'colours',
+							fg = data.codes[fg][1];
+
+						if (fgt === 'rgb') fg = fg.replace(' ', '').split(',');
+
+					}
+
+					let bgf = !bg ? pre + replaceCodes(text) : bgt === 'colours' ? leeks[bgt][bg](pre + replaceCodes(text)) : leeks[bgt](bg, pre + replaceCodes(text));
+					let fgf = fgt === 'colours' ? leeks[fgt][fg](bgf) : leeks[fgt](fg, bgf);
+
+					if (!fg) {
+						console[t.log](bgf);
+					} else {
+						console[t.log](fgf);
+					}
 				} else {
-					console.log(`[${this.stamp() + title}] ${replaceCodes(text)}`);
+					console[t.log](pre + strip(text)); // for weirdos who don't like colours
 				}
 
 
@@ -231,34 +256,80 @@ class Logger {
 		}
 
 		/*
-         * 
-         * AND NOW THE CUSTOM TYPES
-         * 
-         */
+		 * 
+		 * AND NOW THE CUSTOM TYPES
+		 * 
+		 */
 		let custom = 0;
 		for (let type in this.custom) {
-			// check colour support, log to console, log to file (if enabled)
-			// include fileService(this.options, this.path); in the functions
+			this[type] = async (text, colour) => {
+				let t = this.custom[type],
+					title = t.title ? ` | ${t.title.toUpperCase()}` : '',
+					pre = `[${this.stamp() + title}] `;
+				if (!t.type) t.type = 'info';
 
-			this[type] = (text) => {
-				fileService(this.options, this.path);
+				if (t.type === 'debug' && this.options.debug === false) return;
 
-				console.log(`[${this.stamp()} | ${this.custom[type].title.toUpperCase()}] ${replaceCodes(text)}`);
+				if (typeof text !== 'string') text = JSON.stringify(text, null, 2); // stringify objects
+
+				if (o.logToFile) {
+					this.path = await fileService(this.options, this.path); // check to see if a new file should be created	
+					fs.appendFileSync(this.path, `[${this.stamp() + title}] ${strip(text)}\n`, (error) => {
+						if (error) throw error;
+					});
+				}
+
+				if (leeks.supportsColour) {
+					let fg = colour ? colour[0] : t.foreground;
+					let bg = colour ? colour[1] : t.background;
+					let fgt = 'colours',
+						bgt = 'colours';
+
+					fgt = colourType(fg);
+					if (bg) {
+						bgt = bgColourType(bg);
+
+						if (bgt == 'colours' && !bg.startsWith('bg'))
+							bg = 'bg' + bg[0].toUpperCase() + bg.substring(1); // convert FG colour name to BG
+						if (bgt === 'CODE') {
+							bgt = 'colours';
+							if (bg[1] !== '!')
+								bg = '&!' + bg[1];
+							bg = data.codes[bg][1];
+
+						}
+						if (bgt === 'rgb') bg = bg.replace(' ', '').split(',');
+					}
+
+					if (fgt === 'CODE')
+						fgt = 'colours',
+						fg = data.codes[fg][1];
+					if (fgt === 'rgb') fg = fg.replace(' ', '').split(',');
+
+					let bgf = !bg ? pre + replaceCodes(text) : bgt === 'colours' ? leeks[bgt][bg](pre + replaceCodes(text)) : leeks[bgt](bg, pre + replaceCodes(text));
+					let fgf = fgt === 'colours' ? leeks[fgt][fg](bgf) : leeks[fgt](fg, bgf);
+
+					if (!fg) {
+						console[t.type](bgf);
+					} else {
+						console[t.type](fgf);
+					}
+				} else {
+					console[t.type](pre + strip(text)); // for weirdos who don't like colours
+				}
+
+
 			};
-
 
 			custom++; // counter (doesn't do anything)
 		}
 
 
-
-
-
 		/*
-         * 
-         * FILE MANAGEMENT
-         * 
-         */
+		 * 
+		 * FILE MANAGEMENT
+		 * 
+		 */
 
 		// send startup messages
 		verbose(this.options.keepSilent, `[${this.stamp()} | LOGGER] Initialising logger (v${pkg.version})`);
@@ -282,16 +353,16 @@ class Logger {
 
 	multi(obj) {
 		if (!obj || typeof obj !== 'object') {
-			console.log(leeks.colours.yellowBright(`[${this.stamp()} | LOGGER] You must pass the Logger instance when calling the .multi() function (see documentation at ${pkg.homepageDisplayURL})`));
+			console.log(leeks.colours.yellowBright(`[${this.stamp()} | LOGGER] You must pass the Logger instance when calling the .multi() function (see documentation at ${pkg.homepage})`));
 			throw new TypeError('Logger instance not passed, type must be an object.');
 		}
 		log = obj;
 		verbose(this.options.keepSilent, `[${this.stamp()} | LOGGER] Multi-Logger initialised; child loggers can now be created`);
 	}
 
-	static setPath(path) { // doesn't work because this does not refer to the correct thing
-		this.path = path;
-	}
+	// static setPath(path) { // doesn't work because this does not refer to the correct thing
+	// 	this.path = path;
+	// }
 }
 
 
@@ -307,12 +378,12 @@ module.exports.ChildLogger = class ChildLogger extends Logger {
 	}
 };
 
-// legacy support (a warning)
+// legacy "support" (a warning)
 module.exports.init = () => {
-	console.log(leeks.colours.bgYellowBright(leeks.colours.black('[LOGGER] IMPORTANT NOTICE ABOUT LEEKSLAZYLOGGER')));
+	console.log(leeks.colours.bgYellowBright(leeks.colours.black('[LOGGER] IMPORTANT NOTICE ABOUT LEEKSLAZYLOGGER (v1 DEPRECATED)')));
 	console.log(leeks.colours.greenBright(`
-    leekslazylogger was completely rewritten for v2 and no longer works in the same way.
-    For help updating your code, read the documentation at ${leeks.colours.yellowBright(pkg.homepageDisplayURL + ' or github.com/eartharoid/leekslazylogger')}`));
+    leekslazylogger was completely rewritten and v2 no longer works in the same way.
+    For help updating your code, read the documentation at ${leeks.colours.yellowBright(pkg.homepage)}`));
 	console.log(leeks.colours.greenBright(`
     Or if you don't want to update, install the legacy version with:`));
 	console.log(leeks.colours.yellowBright(`

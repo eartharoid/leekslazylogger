@@ -1,7 +1,7 @@
 /**
  * @name leekslazylogger
  * @author eartharoid <contact@eartharoid.me>
- * @description An easy-to-use and lightweight console logger for Node.JS
+ * @description An easy-to-use and lightweight console logger for Node.JS with colour/styles & file support.
  * @license MIT
  * 
  * defaults and formatting codes storage
@@ -9,14 +9,14 @@
  */
 
 module.exports.defaultTypes = {
-	basic: {title: null, c: null},
-	console: {title: 'INFO', c: null},
-	info: {title: 'INFO', c: ['cyan']},
-	success: {title: 'SUCCESS', c: ['green']},
-	debug: {title: 'DEBUG', c: ['blue']},
-	notice: {title: 'NOTICE', c: ['black', 'bgYellowBright']},
-	warn: {title: 'WARN', c: ['yellowBright']},
-	error: {title: 'ERROR', c: ['red']}
+	basic: {log: 'log', title: null, c: ['white']},
+	console: {log: 'log', title: 'INFO', c: ['white']},
+	info: {log: 'info', title: 'INFO', c: ['cyan']},
+	success: {log: 'info', title: 'INFO', c: ['green']},
+	debug: {log: 'debug', title: 'DEBUG', c: ['blue']},
+	notice: {log: 'warn', title: 'NOTICE', c: ['black', 'bgYellow']},
+	warn: {log: 'warn', title: 'WARN', c: ['yellow']},
+	error: {log: 'error', title: 'ERROR', c: ['red']}
 };
 
 module.exports.defaults = {
@@ -25,7 +25,8 @@ module.exports.defaults = {
 	timestamp: 'HH:mm:ss',
 	dateFormat: 'YYYY-MM-DD',
 	maxAge: 7,
-	keepSilent: false
+	keepSilent: false,
+	debug: false
 };
 
 // 24 colouring and styling codes 
