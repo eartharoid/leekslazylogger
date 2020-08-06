@@ -14,8 +14,8 @@ jobs:
     executor: node/default
     steps:
       - run:
-        command: npm test
-        name: Node test
+          command: npm test
+          name: Node test
   deploy:
     executor: python/default
     steps:
