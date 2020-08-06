@@ -26,7 +26,8 @@ module.exports.defaults = {
 	dateFormat: 'YYYY-MM-DD',
 	maxAge: 7,
 	keepSilent: false,
-	debug: false
+	debug: false,
+	translateCodes: true
 };
 
 // 24 colouring and styling codes 

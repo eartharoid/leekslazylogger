@@ -28,16 +28,18 @@ const log = new Logger({
 		}
 	},
 	logToFile: true,
-	maxAge: -1,
+	maxAge: 2,
 	keepSilent: false,
 	daily: true,
 	debug: true,
+	translateCodes: true
 });
 
 log.console('&b' + log.options.name);
 log.error({error: 'test'});
 
 log.info('&1whiteBright', ['black', 'whiteBright']); // bg works if you forget to use a bg colour name
+log.info('&1bgWhiteBright', ['black', 'bgWhiteBright']);
 
 log.console('rgb', ['0,0,253', '255,255,255']);
 log.console('hex', ['#009999', '#111111']);
@@ -58,14 +60,15 @@ require('./t2')();
 log.console('&0&!9END OF T2');
 
 
-
-log.console('should be white');
-
 log.info('INFOOOOOO');
 log.warn('warning');
 
 setTimeout(() => {
 	log.info('beep');
+}, 1000);
+
+setInterval(() => {
+	log.warn(log.stamp());
 }, 1000);
 
 
@@ -77,6 +80,8 @@ log.debug('debug');
 log.warn('warn');
 log.notice('notice');
 log.error('error');
+
+log.debug(log.path);
 
 // require('.').init(); // test legacy warning message
 

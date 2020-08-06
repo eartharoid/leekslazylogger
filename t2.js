@@ -10,4 +10,5 @@ module.exports = () => {
 	}
 
 	log.info('&a&l&!3hello from t2.js');
+	log.notice('hey');
 };

@@ -1,7 +1,7 @@
 /**
  * @module leekslazylogger
  * @author eartharoid <contact@eartharoid.me>
- * @description An easy-to-use and lightweight console logger for Node.JS with colour/styles & file support.
+ * @description An easy-to-use and lightweight Node.JS logger with file support, colours, and timestamps.
  * @copyright 2020 Isaac Saunders (eartharoid) 
  * @license MIT
  */
@@ -19,14 +19,16 @@ let log;
 const plural = (word, num) => num !== 1 ? word + 's' : word;
 
 const codesRegex = /&[0-9a-fi-or]|&![0-9a-f]/g;
-const replaceCodes = string => string.replace(codesRegex, cs => `\x1b[${termCodes[data.codes[cs][0]][data.codes[cs][1]]}m`) + '\x1b[0m';
+const replaceCodes = (tC, str) =>
+	tC ? str.replace(codesRegex, cs => `\x1b[${termCodes[data.codes[cs][0]][data.codes[cs][1]]}m`) + '\x1b[0m' : str;
 
 // check if unnecessary messages have been disabled and if not, send them
 const verbose = (silent, text) => {
-	if (silent === false) return console.log(text);
+	if (!silent) return console.log(text);
 };
 
-const strip = t => t.replace(/\u001b\[.*?m/g, '').replace(codesRegex, ''); // remove leeks colours and &codes
+const strip = (tC, t) =>
+	tC ? t.replace(/\u001b\[.*?m/g, '').replace(codesRegex, '') : t.replace(/\u001b\[.*?m/g, ''); // remove leeks colours and &codes
 
 const colourType = str => typeof str === 'number' ? 'eightBit' : str.includes(',') ? 'rgb' : str.startsWith('#') ? 'hex' : str.startsWith('&') ? 'CODE' : 'colours';
 const bgColourType = str => typeof str === 'number' ? 'eightBitBg' : str.includes(',') ? 'rgbBg' : str.startsWith('#') ? 'hexBg' : str.startsWith('&') ? 'CODE' : 'colours';
@@ -70,14 +72,15 @@ const createNewFile = (o, path) => {
 
 const fileService = (o, path) => {
 	if (o.daily === false) return path; // stop here if daily logging is disabled
-	let stamp = `./logs/${timestamp(o.dateFormat)}.log`;
+	let prev = `./logs/${timestamp(o.dateFormat)}.log`;
 	return new Promise((resolve) => {
-		if (path !== stamp) {
-			path = stamp;
-			createNewFile(o, path).then(() => resolve(path)); // make a new file and return it's path
-		} else {
-			resolve(path); // return same path
+		if (path !== prev) {
+			path = prev;
+			createNewFile(o, path);
+			//.then(() => resolve(path));
 		}
+		resolve(path); // return same path
+
 	});
 
 };
@@ -138,28 +141,36 @@ class Logger {
 
 			this.custom = o.custom;
 
+			this.options = {
+				...data.defaults
+			};
+
 			// name of project
-			this.options.name = o.name ? o.name : data.defaults.name;
+			if (typeof o.name !== 'undefined') this.options.name = o.name;
 
 			// log everything to a file?
-			this.options.logToFile = o.logToFile === false ? false : data.defaults.logToFile;
+			if (typeof o.logToFile !== 'undefined') this.options.logToFile = o.logToFile;
 
 			// timestamp format to be used in log file and console
-			this.options.timestamp = o.timestamp ? o.timestamp : data.defaults.timestamp;
+			if (typeof o.timestamp !== 'undefined') this.options.timestamp = o.timestamp;
 
 			// datestamp format to be used in log file's name
-			// * @param {string} o.dateFormat - datestamp format (only used in log file's name)
-			// this.options.dateFormat = o.dateFormat ? o.dateFormat : data.defaults.dateFormat;
-			this.options.dateFormat = 'YYYY-MM-DD';
+			// if(typeof o.dateFormat !== 'undefined') this.options.dateFormat = o.dateFormat;
 
 			// how long to keep files (in days)
-			this.options.maxAge = o.maxAge ? o.maxAge : data.defaults.maxAge;
+			if (typeof o.maxAge !== 'undefined') this.options.maxAge = o.maxAge;
 
 			// hide logger startup messages? cleaner but less informative.
-			this.options.keepSilent = o.keepSilent ? o.keepSilent : data.defaults.keepSilent;
+			if (typeof o.keepSilent !== 'undefined') this.options.keepSilent = o.keepSilent;
 
 			// show debug messages?
-			this.options.debug = o.debug ? o.debug : data.defaults.debug;
+			if (typeof o.debug !== 'undefined') this.options.debug = o.debug;
+
+			// convert colour codes to colours, or ignore them?
+			if (typeof o.translateCodes !== 'undefined') this.options.translateCodes = o.translateCodes;
+
+
+			console.log(this.options);
 
 			// 1 log file per day or 1 per run?
 			if (o.daily === false) {
@@ -192,7 +203,8 @@ class Logger {
 			this[type] = async (text, colour) => {
 				let t = data.defaultTypes[type],
 					title = t.title ? ` | ${t.title.toUpperCase()}` : '',
-					pre = `[${this.stamp() + title}] `;
+					pre = `[${this.stamp() + title}] `,
+					tC = this.options.translateCodes;
 
 				if (t.log === 'debug' && this.options.debug === false) return;
 
@@ -200,7 +212,7 @@ class Logger {
 
 				if (o.logToFile) {
 					this.path = await fileService(this.options, this.path); // check to see if a new file should be created	
-					fs.appendFileSync(this.path, `[${this.stamp() + title}] ${strip(text)}\n`, (error) => {
+					fs.appendFileSync(this.path, `[${this.stamp() + title}] ${strip(tC, text)}\n`, (error) => {
 						if (error) throw error;
 					});
 				}
@@ -239,7 +251,7 @@ class Logger {
 
 					}
 
-					let bgf = !bg ? pre + replaceCodes(text) : bgt === 'colours' ? leeks[bgt][bg](pre + replaceCodes(text)) : leeks[bgt](bg, pre + replaceCodes(text));
+					let bgf = !bg ? pre + replaceCodes(tC, text) : bgt === 'colours' ? leeks[bgt][bg](pre + replaceCodes(tC, text)) : leeks[bgt](bg, pre + replaceCodes(tC, text));
 					let fgf = fgt === 'colours' ? leeks[fgt][fg](bgf) : leeks[fgt](fg, bgf);
 
 					if (!fg) {
@@ -248,7 +260,7 @@ class Logger {
 						console[t.log](fgf);
 					}
 				} else {
-					console[t.log](pre + strip(text)); // for weirdos who don't like colours
+					console[t.log](pre + strip(tC, text)); // for weirdos who don't like colours
 				}
 
 
@@ -265,7 +277,9 @@ class Logger {
 			this[type] = async (text, colour) => {
 				let t = this.custom[type],
 					title = t.title ? ` | ${t.title.toUpperCase()}` : '',
-					pre = `[${this.stamp() + title}] `;
+					pre = `[${this.stamp() + title}] `,
+					tC = this.options.translateCodes;
+
 				if (!t.type) t.type = 'info';
 
 				if (t.type === 'debug' && this.options.debug === false) return;
@@ -274,7 +288,7 @@ class Logger {
 
 				if (o.logToFile) {
 					this.path = await fileService(this.options, this.path); // check to see if a new file should be created	
-					fs.appendFileSync(this.path, `[${this.stamp() + title}] ${strip(text)}\n`, (error) => {
+					fs.appendFileSync(this.path, `[${this.stamp() + title}] ${strip(tC, text)}\n`, (error) => {
 						if (error) throw error;
 					});
 				}
@@ -306,7 +320,7 @@ class Logger {
 						fg = data.codes[fg][1];
 					if (fgt === 'rgb') fg = fg.replace(' ', '').split(',');
 
-					let bgf = !bg ? pre + replaceCodes(text) : bgt === 'colours' ? leeks[bgt][bg](pre + replaceCodes(text)) : leeks[bgt](bg, pre + replaceCodes(text));
+					let bgf = !bg ? pre + replaceCodes(tC, text) : bgt === 'colours' ? leeks[bgt][bg](pre + replaceCodes(tC, text)) : leeks[bgt](bg, pre + replaceCodes(tC, text));
 					let fgf = fgt === 'colours' ? leeks[fgt][fg](bgf) : leeks[fgt](fg, bgf);
 
 					if (!fg) {
@@ -315,7 +329,7 @@ class Logger {
 						console[t.type](fgf);
 					}
 				} else {
-					console[t.type](pre + strip(text)); // for weirdos who don't like colours
+					console[t.type](pre + strip(tC, text)); // for weirdos who don't like colours
 				}
 
 
