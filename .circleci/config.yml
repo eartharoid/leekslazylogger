@@ -6,9 +6,13 @@ general:
      - master
 
 orbs:
+  node: circleci/node@3.0.0
   python: circleci/python@0.3.0
 
 jobs:
+  test:
+    jobs:
+      - node/test
   deploy:
     executor: python/default
     steps:
@@ -26,4 +30,5 @@ jobs:
 workflows:
   main:
     jobs:
+      - test
       - deploy
