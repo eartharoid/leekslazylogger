@@ -2,7 +2,7 @@
  * @module leekslazylogger
  * @author eartharoid <contact@eartharoid.me>
  * @description An easy-to-use and lightweight Node.JS logger with file support, colours, and timestamps.
- * @copyright 2020 Isaac Saunders (eartharoid) 
+ * @copyright 2020 Isaac Saunders (eartharoid)
  * @license MIT
  */
 
@@ -80,9 +80,7 @@ const fileService = (o, path) => {
 			//.then(() => resolve(path));
 		}
 		resolve(path); // return same path
-
 	});
-
 };
 
 class LoggerError extends Error {
@@ -93,19 +91,18 @@ class LoggerError extends Error {
 	}
 }
 
-
 /**
  * @description Logger object with options (o)
  * @param {object} o - customise your logger with options
  * @param {string} o.name - name of your project, will appear at the top of log files
  * @param {boolean} o.logToFile - log everything to a file?
  * @param {boolean} o.daily - Make a new file at the start of every day?
- * @param {boolean} o.keepSilent - Hide startup messages from the logger? 
+ * @param {boolean} o.keepSilent - Hide startup messages from the logger?
  * @param {string} o.timestamp - timestamp format
  * @param {number} o.maxAge - number of days to keep old log files (-1 to delete all)
  * @param {object} o.custom - object of custom types, see wiki for help
  */
-class Logger {
+module.exports = class Logger {
 	constructor(o) {
 		if (o && typeof o !== 'object') throw new TypeError('Options must be an object');
 		if (!o) o = {};
@@ -114,9 +111,7 @@ class Logger {
 				console.error(leeks.colours.redBright(`[LOGGER] You can't create a child logger before calling the .multi() function (see documentation at ${pkg.homepage})`));
 				throw new LoggerError('Logger not initialised for child loggers.');
 			}
-			for (let item in log) {
-				this[item] = log[item];
-			}
+			for (let item in log) this[item] = log[item];
 		}
 
 		this.options = {};
@@ -126,11 +121,10 @@ class Logger {
 		};
 
 		/*
-		 * 
+		 *
 		 * OPTIONS AND OTHER STUFF
-		 * 
+		 *
 		 */
-
 
 		if (o.child) {
 			this.path = log.path;
@@ -185,14 +179,13 @@ class Logger {
 		// timestamp function
 		this.stamp = () => timestamp(this.options.timestamp);
 
-
 		// STOP HERE IF IT IS A CHILD LOGGER
 		if (o.child === true) return;
 
 		/*
-		 * 
+		 *
 		 * SET UP THE DEFAULT LOG TYPES
-		 * 
+		 *
 		 */
 
 		for (let type in data.defaultTypes) {
@@ -233,12 +226,9 @@ class Logger {
 
 							if (bgt === 'CODE') {
 								bgt = 'colours';
-								if (bg[1] !== '!')
-									bg = '&!' + bg[1];
+								if (bg[1] !== '!') bg = '&!' + bg[1];
 								bg = data.codes[bg][1];
-
 							}
-
 
 							if (bgt === 'rgb') bg = bg.replace(' ', '').split(',');
 						}
@@ -254,23 +244,16 @@ class Logger {
 					let bgf = !bg ? pre + replaceCodes(tC, text) : bgt === 'colours' ? leeks[bgt][bg](pre + replaceCodes(tC, text)) : leeks[bgt](bg, pre + replaceCodes(tC, text));
 					let fgf = fgt === 'colours' ? leeks[fgt][fg](bgf) : leeks[fgt](fg, bgf);
 
-					if (!fg) {
-						console[t.log](bgf);
-					} else {
-						console[t.log](fgf);
-					}
-				} else {
-					console[t.log](pre + strip(tC, text)); // for weirdos who don't like colours
-				}
-
-
+					if (!fg) console[t.log](bgf);
+					else console[t.log](fgf);
+				} else console[t.log](pre + strip(tC, text)); // for weirdos who don't like colours
 			};
 		}
 
 		/*
-		 * 
+		 *
 		 * AND NOW THE CUSTOM TYPES
-		 * 
+		 *
 		 */
 		let custom = 0;
 		for (let type in this.custom) {
@@ -307,10 +290,8 @@ class Logger {
 							bg = 'bg' + bg[0].toUpperCase() + bg.substring(1); // convert FG colour name to BG
 						if (bgt === 'CODE') {
 							bgt = 'colours';
-							if (bg[1] !== '!')
-								bg = '&!' + bg[1];
+							if (bg[1] !== '!') bg = '&!' + bg[1];
 							bg = data.codes[bg][1];
-
 						}
 						if (bgt === 'rgb') bg = bg.replace(' ', '').split(',');
 					}
@@ -323,42 +304,28 @@ class Logger {
 					let bgf = !bg ? pre + replaceCodes(tC, text) : bgt === 'colours' ? leeks[bgt][bg](pre + replaceCodes(tC, text)) : leeks[bgt](bg, pre + replaceCodes(tC, text));
 					let fgf = fgt === 'colours' ? leeks[fgt][fg](bgf) : leeks[fgt](fg, bgf);
 
-					if (!fg) {
-						console[t.type](bgf);
-					} else {
-						console[t.type](fgf);
-					}
-				} else {
-					console[t.type](pre + strip(tC, text)); // for weirdos who don't like colours
-				}
-
-
+					if (!fg) console[t.type](bgf);
+					else console[t.type](fgf);
+				} else console[t.type](pre + strip(tC, text)); // for weirdos who don't like colours
 			};
-
 			custom++; // counter (doesn't do anything)
 		}
 
-
 		/*
-		 * 
+		 *
 		 * FILE MANAGEMENT
-		 * 
+		 *
 		 */
 
 		// send startup messages
 		verbose(this.options.keepSilent, `[${this.stamp()} | LOGGER] Initialising logger (v${pkg.version})`);
 
-		if (this.options.logToFile === true) {
-			createNewFile(this.options, this.path);
-		} else {
-			return verbose(this.options.keepSilent, `[${this.stamp()} | LOGGER] Logging to file is ${leeks.colours.redBright('disabled')}`);
-		}
-
+		if (this.options.logToFile === true) createNewFile(this.options, this.path);
+		else return verbose(this.options.keepSilent, `[${this.stamp()} | LOGGER] Logging to file is ${leeks.colours.redBright('disabled')}`);
 
 		if (custom >= 1) {
 			verbose(this.options.keepSilent, `[${this.stamp()} | LOGGER] Initialised with ${custom} custom log ${plural('type', custom)}`);
 		}
-
 	}
 
 	stamp() {
@@ -379,8 +346,6 @@ class Logger {
 	// }
 }
 
-
-module.exports = Logger;
 /**
  * @description Child logger object - no options, has all of the logging functions but doesn't create new files
  */

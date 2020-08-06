@@ -3,9 +3,9 @@
  * @author eartharoid <contact@eartharoid.me>
  * @description An easy-to-use and lightweight console logger with file support for Node.JS.
  * @license MIT
- * 
+ *
  * log file header template - cleans up main file
- * 
+ *
  */
 
 const timestamp = require('@eartharoid/dtf');
@@ -24,6 +24,7 @@ const platform = () => {
 	default: 'unknown platform';
 	}
 };
+
 module.exports = (o) => {
 	return `
     \n<-<-<================================================================================>->->
