@@ -1,5 +1,10 @@
 version: 2.1
 
+general:
+  branches:
+    ignore:
+      - gh-pages
+
 orbs:
   python: circleci/python@0.3.0
 
