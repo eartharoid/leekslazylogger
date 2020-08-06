@@ -41,4 +41,4 @@ log.type(text, [colours]); // colour overrides are optional
 	log.info('Hello world');
 	```
 
-A list of the default log types can be found [here](/log-types). Look at [this](/customisation/custom-types) page for information about custom log types
+A list of the default log types can be found [here](/log-types). Look at [this](/customisation/custom-types) page for information about custom log types.
