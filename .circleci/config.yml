@@ -10,16 +10,6 @@ orbs:
   python: circleci/python@0.3.0
 
 jobs:
-  test:
-    executor: node/default
-    steps:
-      - checkout
-      - run:
-          command: npm i
-          name: NPM install
-      - run:
-          command: npm test
-          name: NPM test
   deploy:
     executor: python/default
     steps:
@@ -37,5 +27,13 @@ jobs:
 workflows:
   main:
     jobs:
-      - test
-      - deploy
+      - node/test:
+          filters:
+            branches:
+              only:
+                - master
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
