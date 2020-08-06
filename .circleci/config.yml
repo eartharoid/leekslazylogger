@@ -13,9 +13,13 @@ jobs:
   test:
     executor: node/default
     steps:
+      - checkout
+      - run:
+          command: npm i
+          name: NPM install
       - run:
           command: npm test
-          name: Node test
+          name: NPM test
   deploy:
     executor: python/default
     steps:
