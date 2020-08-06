@@ -1,91 +1,87 @@
-const log = require('./index.js');
-// const readline = require('readline');
-// const rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout
-// });
-
-log.init({
-  name: 'leeksLazyLogger',
-  custom: {
-    special: {
-      title: 'Special',
-      colour: 'greenBright'
-    },
-    database: {
-      title: 'MySQL',
-      colour: 'cyanBright'
-    },
-  },
-  logToFile: true,
-  timestamp: 'DD/MM/YY hh:mm:ss',
-  maxAge: 7
+const Logger = require('.');
+const log = new Logger({
+	name: 'Logger Test',
+	custom: {
+		ex1: {
+			title: 'normal example',
+			foreground: 'black',
+			background: 'bgCyan'
+		},
+		ex2: {
+			title: 'hex example',
+			foreground: '#00FF21',
+			type: 'warn'
+		},
+		ex3: {
+			title: 'rgb example',
+			foreground: '0, 255, 255',
+			type: 'error'
+		},
+		ex4: {
+			title: '8bit example',
+			foreground: 16 
+		},
+		ex5: {
+			title: 'another example',
+			foreground: '&1',
+			background: '&!2'
+		}
+	},
+	logToFile: true,
+	maxAge: 2,
+	keepSilent: false,
+	daily: true,
+	debug: true,
+	translateCodes: true
 });
 
+log.console('&b' + log.options.name);
+log.error({error: 'test'});
 
-log.basic(`some text here`); // white text with [timestamp] ...
-log.console(`some info here`); // white text with [timestamp | INFO] ...
-log.info(`some info here`); // cyan text with [timestamp | INFO] ...
-log.debug(`some debugging info here`); // blue text with [timestamp | DEBUG] ...
-log.success(`some info here`);// green text with [timestamp | INFO] ...
-log.warn(`some warning here`); // yellow text with [timestamp | WARN] ...
-log.error(`some error here`);// error text with [timestamp | ERROR] ...
+log.info('&1whiteBright', ['black', 'whiteBright']); // bg works if you forget to use a bg colour name
+log.info('&1bgWhiteBright', ['black', 'bgWhiteBright']);
 
-log.basic(log.colour.magentaBright(`some kewl text here`)); // only the text after the timestamp will be coloured
+log.console('rgb', ['0,0,253', '255,255,255']);
+log.console('hex', ['#009999', '#111111']);
+log.console('8bit', [16, 11]);
+log.console('code', ['&3', '&1']); // &1 will become &!1
 
-log.warn(log.colour.bgYellowBright(log.colour.black(`stands out even more`)) + log.colour.red(` - but this bit is red`));
+log.console('&a&lThis should be light &c&o&kgreen&a&l and &nbold');
+log.console('&00&r     &11&r     &22&r     &33&r     &44&r     &55&r     &66&r     &77&r     &88&r     &99');
+log.console('&aa&r     &bb&r     &cc&r     &dd&r     &ee&r     &ff');
+log.console('&!0!0&r    &!1!1&r    &!2!2&r    &!3!3&r    &!4!4&r    &!5!5&r    &!6!6&r    &!7!7&r    &!8!8&r    &!9!9&r');
+log.console('&!a!a&r    &!b!b&r    &!c!c&r    &!d!d&r    &!e!e&r    &!f!f&r');
 
-log.warn(log.colour.bgYellowBright(log.colour.black(`EXTRA IMPORTANT WARNING!`)));
+log.console('&a&l&!3(codes)');
 
-// or colour the whole line
-log.info(`my super important info`, 'magentaBright'); // colours the whole line magenta (including timestamp)
-log.custom('TYPE', `my awesome info`); // [TYPE | timestamp], white
-log.custom('TYPE', `my awesome info`, 'cyan'); // [TYPE | timestamp], cyan
-// the example below is a custom type (defined in initialisation) - NOT A DEFAULT
-log.type.database('Successful (fake) connection established with \'fakeuser@fakehost\''); // uses a custom type, useful if you use one often
-
-log.console('ALL OF THE COLOURS');
-// will go through all the possible colours
-for (let c in log.colours) {
-  log.custom('TEST', c, c);
-}
+log.multi(log); // must be called in main before creating a Child Logger in another file
+log.console('&0&!9START OF T2');
+require('./t2')();
+log.console('&0&!9END OF T2');
 
 
+log.info('INFOOOOOO');
+log.warn('warning');
 
-log.type.special('special test');
+setTimeout(() => {
+	log.info('beep');
+}, 1000);
 
-// rl.on('line', (line) => { // this isn't required, but adding this will allow you to type `exit` or `quit` to exit
-//   switch (line.trim().toLowerCase()) {
-//     case 'exit':
-//     case 'quit':
-//       log.console('Exiting...')
-//       process.exit(0);
-//       break;
-//      default:
-//        log.warn(`Unkown command '${line.trim().toLowerCase()}'`);
-//        break;
-//   }
-// });
+setInterval(() => {
+	log.warn(log.stamp());
+}, 1000);
 
 
+log.basic('basic');
+log.console('console');
+log.info('info');
+log.success('success');
+log.debug('debug');
+log.warn('warn');
+log.notice('notice');
+log.error('error');
 
-// log.basic(log.getFile()) // log.getFile() will return the contents of the .log file currently being used
+log.debug(log.path);
 
-log.info(`Current log file: ${log.getPath()}`);
-log.debug({
-  custom: {
-    special: {
-      title: 'customType',
-      colour: 'blueBright'
-    },
-    database: {
-      title: 'MySQL',
-      colour: 'cyanBright'
-    }
-  }
-}); // objects must be printed on their own line, with no other text
+// require('.').init(); // test legacy warning message
 
-log.newLine();
-log.console(log.colour.cyanBright(log.style.underline('Important information:') + log.colour.cyanBright(' text')));
-log.info(`log.time = ${log.time}`);
-log.info(`log.timestamp() = ${log.timestamp()}`);

@@ -3,5 +3,7 @@ logs/
 site/
 *.log
 package-lock.json
-store/
 
+docs/
+.github/
+mkdocs.yml
