@@ -11,7 +11,8 @@ orbs:
 
 jobs:
   test:
-    jobs:
+    executor: node/default
+    steps:
       - node/test
   deploy:
     executor: python/default
