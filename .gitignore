@@ -3,3 +3,5 @@ logs/
 site/
 *.log
 package-lock.json
+store/
+
