@@ -67,9 +67,9 @@ setTimeout(() => {
 	log.info('beep');
 }, 1000);
 
-setInterval(() => {
-	log.warn(log.stamp());
-}, 1000);
+// setInterval(() => {
+// 	log.warn(log.stamp());
+// }, 1000);
 
 
 log.basic('basic');

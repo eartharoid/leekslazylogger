@@ -102,7 +102,7 @@ class LoggerError extends Error {
  * @param {number} o.maxAge - number of days to keep old log files (-1 to delete all)
  * @param {object} o.custom - object of custom types, see wiki for help
  */
-module.exports = class Logger {
+class Logger {
 	constructor(o) {
 		if (o && typeof o !== 'object') throw new TypeError('Options must be an object');
 		if (!o) o = {};
@@ -345,6 +345,8 @@ module.exports = class Logger {
 	// 	this.path = path;
 	// }
 }
+
+module.exports = Logger;
 
 /**
  * @description Child logger object - no options, has all of the logging functions but doesn't create new files
