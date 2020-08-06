@@ -3,9 +3,9 @@
  * @author eartharoid <contact@eartharoid.me>
  * @description An easy-to-use and lightweight console logger for Node.JS with colour/styles & file support.
  * @license MIT
- * 
+ *
  * defaults and formatting codes storage
- * 
+ *
  */
 
 module.exports.defaultTypes = {
@@ -30,7 +30,7 @@ module.exports.defaults = {
 	translateCodes: true
 };
 
-// 24 colouring and styling codes 
+// 24 colouring and styling codes
 module.exports.codes = {
 	// first 10 of 16 colours           --FOREGROUND---
 	'&0': ['colors', 'black'],
@@ -58,7 +58,7 @@ module.exports.codes = {
 	'&m': ['styles', 'strikethrough'],
 	'&n': ['styles', 'underline'],
 	'&o': ['styles', 'italic'],
-	'&r': ['styles', 'reset'],   
+	'&r': ['styles', 'reset'],
 	// first 10 of 16 colours           ---BACKGROUND---
 	'&!0': ['colors', 'bgBlack'],
 	'&!1': ['colors', 'bgBlue'],
