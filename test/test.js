@@ -1,4 +1,4 @@
-const Logger = require('.');
+const Logger = require('../lib');
 const log = new Logger({
 	name: 'Logger Test',
 	custom: {

@@ -2,4 +2,3 @@ node_modules/
 logs/
 site/
 *.log
-package-lock.json

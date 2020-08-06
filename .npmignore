@@ -2,11 +2,11 @@ node_modules/
 logs/
 site/
 *.log
-package-lock.json
 
 
 .github/
 .circleci/
 docs/
+.eslintrc.js
 mkdocs.yml
 requirements.txt

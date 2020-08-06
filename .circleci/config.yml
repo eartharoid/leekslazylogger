@@ -1,5 +1,10 @@
 version: 2.1
 
+general:
+  branches:
+    only:
+     - master
+
 orbs:
   python: circleci/python@0.3.0
 
@@ -21,8 +26,4 @@ jobs:
 workflows:
   main:
     jobs:
-      - deploy:
-          filters:
-            branches:
-              ignore:
-                - "gh-pages"
+      - deploy

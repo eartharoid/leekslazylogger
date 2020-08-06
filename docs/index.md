@@ -19,7 +19,7 @@ leekslazylogger is an easy-to-use and lightweight Node.JS logger with file suppo
 - Strips colour if it's not supported in the environment
 - Cross-platform
 
-## Getting Started
+## Getting started
 
 For installation and usage instructions/examples, see [Getting Started](/getting-started)
 
