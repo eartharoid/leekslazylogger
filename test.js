@@ -84,4 +84,3 @@ log.error('error');
 log.debug(log.path);
 
 // require('.').init(); // test legacy warning message
-
