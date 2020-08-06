@@ -4,6 +4,9 @@ site/
 *.log
 package-lock.json
 
-docs/
+
 .github/
+.circleci/
+docs/
 mkdocs.yml
+requirements.txt
