@@ -112,7 +112,7 @@ module.exports = {
 
 ### custom
 
-- An object of custom log types. **See [Custom types](./custom-types)**.
+- An object of custom log types. **See [Custom types](../custom-types)**.
 - Type: object
 
 ??? example
