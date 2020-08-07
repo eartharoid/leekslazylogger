@@ -4,7 +4,7 @@
 	"description": "An easy-to-use and lightweight Node.JS logger with file support, colours, and timestamps.",
 	"main": "lib/index.js",
 	"dependencies": {
-		"@eartharoid/dtf": "^1.0.6",
+		"@eartharoid/dtf": "^1.0.7",
 		"leeks.js": "^0.0.8"
 	},
 	"scripts": {
