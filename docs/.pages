@@ -2,4 +2,5 @@ arrange:
  - index.md
  - getting-started.md
  - child-loggers.md
+ - log-types.md
  - ...

@@ -1,37 +1,60 @@
 # Custom log types
 
+To create custom log types, pass a `custom` object of types with the [options](../options)
+
+!!! example
+
+	```js
+	const log = new Loger({
+		custom: {
+		sql: {
+			title: 'MySQL',
+			foreground: 'bluebright',
+			type: 'info'
+		},
+		redis: {
+			title: 'Redis',
+			foreground: 'redBright',
+			type: 'info'
+		},
+	},
+	});
+	```
+
+If you created a type called `sql` like this:
+
 ```js
-const yes = "no";
-const function = () => {
-
-...
-
-// bonjour
-
-// fancy
-}
+custom: {
+	sql: {
+		title: 'MySQL',
+		foreground: 'bluebright',
+		type: 'info'
+	},
+},
 ```
 
-!!! note
-	Hey! This is a notice.
+You would use it like this:
 
-??? note "Yes?"
-    No
+```js
+log.sql('Something about the database');
+// -> [00:00:00 | MYSQL] Something about the database
+```
 
-!!! summary
-	mm
+## Options
 
-!!! tldr
-	learn to read
+### title
 
-!!! info
-	information
+A string that will show with the timestamp (it will be logged in uppercase)
 
-!!! tip
-	hi
+### foreground
 
-!!! help
-	no
+A resolvable foreground [colour](/colours) to colour the text.
 
-!!! warning
-	I warned you...
+### background
+
+A resolvable background [colour](/colours) to colour the background.
+
+### type
+
+Changes the `console` function. Defaults to `info`
+

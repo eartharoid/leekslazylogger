@@ -26,7 +26,7 @@ const log = new Logger({options});
 !!! warning
 	Don't create another Logger instance in this process - use [ChildLoggers](/child-loggers).
 
-For `options`, see [Customisation](/customisation).
+For `options`, see [Customisation/Options](/customisation/options).
 
 Please refer to [Child loggers](/child-loggers) for information about using the logger in multiple files.
 
@@ -38,9 +38,11 @@ Each log type (default or custom) can be used like this:
 log.type(text, [colours]); // colour overrides are optional
 ```
 
-!!! example
+!!! example "Examples"
 	```js
 	log.info('Hello world');
+
+	log.console('Ready.', ['green']);
 	```
 
 A list of the default log types can be found [here](/log-types). Look at [this](/customisation/custom-types) page for information about custom log types.
