@@ -1,39 +1,5 @@
 const Logger = require('../lib');
-const log = new Logger({
-	name: 'Logger Test',
-	custom: {
-		ex1: {
-			title: 'normal example',
-			foreground: 'black',
-			background: 'bgCyan'
-		},
-		ex2: {
-			title: 'hex example',
-			foreground: '#00FF21',
-			type: 'warn'
-		},
-		ex3: {
-			title: 'rgb example',
-			foreground: '0, 255, 255',
-			type: 'error'
-		},
-		ex4: {
-			title: '8bit example',
-			foreground: 16 
-		},
-		ex5: {
-			title: 'another example',
-			foreground: '&1',
-			background: '&!2'
-		}
-	},
-	logToFile: true,
-	maxAge: 2,
-	keepSilent: false,
-	daily: true,
-	debug: true,
-	translateCodes: true
-});
+const log = new Logger(require('./logger'));
 
 log.console('&b' + log.options.name);
 log.error({error: 'test'});
@@ -45,6 +11,7 @@ log.console('rgb', ['0,0,253', '255,255,255']);
 log.console('hex', ['#009999', '#111111']);
 log.console('8bit', [16, 11]);
 log.console('code', ['&3', '&1']); // &1 will become &!1
+log.console('mix', ['&1', '#111111']);
 
 log.console('&a&lThis should be light &c&o&kgreen&a&l and &nbold');
 log.console('&00&r     &11&r     &22&r     &33&r     &44&r     &55&r     &66&r     &77&r     &88&r     &99');
@@ -54,10 +21,18 @@ log.console('&!a!a&r    &!b!b&r    &!c!c&r    &!d!d&r    &!e!e&r    &!f!f&r');
 
 log.console('&a&l&!3(codes)');
 
+
+/**
+ * MULTI LOGGER
+ */
+
 log.multi(log); // must be called in main before creating a Child Logger in another file
+
 log.console('&0&!9START OF T2');
-require('./t2')();
+require('./t2')(); // alternatively, do `require('./t2')(log)` without child loggers
 log.console('&0&!9END OF T2');
+
+
 
 
 log.info('INFOOOOOO');

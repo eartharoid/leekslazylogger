@@ -2,7 +2,7 @@
 
 In your index you should have required leekslazylogger and created a new Logger instance as shown on the [Getting started](/geting-started) page.
 
-**Don't create another Logger instance with this process - use ChildLoggers.**
+**Don't create another Logger instance in this process - use ChildLoggers.**
 
 To use the Logger in another file (eg. `utils.js`) you could use a ChildLogger, or you could pass `log`.
 
@@ -25,7 +25,7 @@ const log = new ChildLogger(); // no options, inherits from main
 
 ## Option 2
 
-**Passing `log` object**
+**Passing the `log` object**
 
 Simple, just use the same `log` object in every file.
 

@@ -23,10 +23,12 @@ const Logger = require('leekslazylogger');
 const log = new Logger({options});
 ```
 
-!!! info
-	For `options`, see [Customisation](/customisation).
+!!! warning
+	Don't create another Logger instance in this process - use [ChildLoggers](/child-loggers).
 
-	**Please refer to [Child loggers](/child-loggers)** for information about using the logger in multiple files.
+For `options`, see [Customisation](/customisation).
+
+Please refer to [Child loggers](/child-loggers) for information about using the logger in multiple files.
 
 ## Basic usage
 
