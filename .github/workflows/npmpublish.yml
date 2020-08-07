@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      - uses: bahmutov/npm-install@v1.1.0
-        with:
+      with:
           node-version: 12
+      - uses: bahmutov/npm-install@v1.1.0 
       - run: npm test
 
   publish-npm:
