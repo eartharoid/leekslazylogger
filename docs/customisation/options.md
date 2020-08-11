@@ -98,18 +98,6 @@ module.exports = {
 	debug: config.debug,
 	```
 
-### translateCodes
-
-- Should leeks short codes (&codes) be used inline or ignored?
-- Type: boolean
-- Default: `true`
-
-??? example
-
-	```js
-	translateCodes: false,
-	```
-
 ### custom
 
 - An object of custom log types. **See [Custom types](../custom-types)**.

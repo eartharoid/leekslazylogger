@@ -1,13 +1,16 @@
 const ChildLogger = require('../lib').ChildLogger;
 const log = new ChildLogger();
+const leeks = require('leeks.js');
 
 module.exports = () => {
-	log.console(`This is ${log.options.name}, from &at2.js`);
+	log.console(log.format(`This is ${log.options.name}, from &at2.js`));
 	log.info('beep');
 	log.ex1('This is a test of Child Loggers');
 
-	for (let t in log.custom) log[t](`&d${t} from t2`);
+	for (let t in log.custom) log[t](log.format(`&d${t} from t2`));
 
-	log.info('&a&l&!3hello from t2.js');
+	for (let c in leeks.colours) log.test(leeks.colours[c](c));
+
+	log.info(log.format('&a&l&!3hello from t2.js'));
 	log.notice('hey');
 };

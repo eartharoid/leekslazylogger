@@ -42,7 +42,9 @@ log.type(text, [colours]); // colour overrides are optional
 	```js
 	log.info('Hello world');
 
-	log.console('Ready.', ['green']);
+	log.console('Ready.', ['magentaBright']);
+
+	log.console(log.format('Status: &aonline'));
 	```
 
 A list of the default log types can be found [here](/log-types). Look at [this](/customisation/custom-types) page for information about custom log types.
@@ -57,3 +59,14 @@ log.info('useful information', [foreground, background]);
 
 This will colour the **entire** line, including the timestamp  & title.
 `foreground` and `background` should be a resolvable [colour](/colours).
+
+### Inline colours
+
+Use the `log.format()` function to colour text using &codes;
+
+```js
+log.console(log.format('&athis is green &4and this is red'));
+```
+
+!!! tip
+	You can use `log.f()` too.

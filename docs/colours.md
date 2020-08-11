@@ -83,6 +83,8 @@ A string containing an `&fg` or `&!bg` short code for a leeks.js colour. All sho
 
 Don't put a space between codes and text when using them inline (`&cred` not `&c red`) as the space will show.
 
+Use `log.f(String)` or `log.format(String)` to use inline colours.
+
 === "Override"
 
 	```js
@@ -94,12 +96,9 @@ Don't put a space between codes and text when using them inline (`&cred` not `&c
 === "Inline"
 
 	```js
-	log.info('this is normal info colour, &athis is light green
-	&3,and it\'s easy to return to the normal colour');
+	log.info(log.format(`this is normal info colour, &athis is light green
+	&3,and it\'s easy to return to the normal colour`));
 	```
-
-!!! tip
-	You can disable inline &codes by setting the `translateCodes` [option](/customisation/options) to `false`. The logger will ignore &codes.
 
 #### leeks.js short codes
 
@@ -116,9 +115,9 @@ Don't put a space between codes and text when using them inline (`&cred` not `&c
 |&6     |yellow         |
 |&7     |blackBright    |
 |&8     |whiteBright    |
-|&9     |cyanBright    	|
+|&9     |blueBright    	|
 |&a     |greenBright    |
-|&b     |blueBright     |
+|&b     |cyanBright     |
 |&c     |redBright      |
 |&d     |magentaBright  |
 |&e     |yellowBright   |
@@ -137,9 +136,9 @@ Don't put a space between codes and text when using them inline (`&cred` not `&c
 |&!6    |bgYellow       |
 |&!7    |bgBlackBright  |
 |&!8    |bgWhiteBright  |
-|&!9    |bgCyanBright   |
+|&!9    |bgBlueBright   |
 |&!a    |bgGreenBright  |
-|&!b    |bgBlueBright   |
+|&!b    |bgCyanBright   |
 |&!c    |bgRedBright    |
 |&!d    |bgMagentaBright|
 |&!e    |bgYellowBright |

@@ -1,6 +1,9 @@
 module.exports = {
 	name: 'Logger Test',
 	custom: {
+		test: {
+			title: 'Test'
+		},
 		ex1: {
 			title: 'normal example',
 			foreground: 'black',
@@ -30,6 +33,5 @@ module.exports = {
 	maxAge: 1,
 	keepSilent: false,
 	daily: true,
-	debug: true,
-	translateCodes: true
+	debug: true
 };
