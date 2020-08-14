@@ -11,6 +11,9 @@
 	"scripts": {
 		"test": "node test/test"
 	},
+	"files": [
+		"lib/"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/eartharoid/leekslazylogger.git"
