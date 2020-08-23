@@ -62,6 +62,6 @@ log.warn([{a: [1]}, 0, '']);
 log.warn(1);
 log.console(log.format('&ahello'));
 
-log.error(new TypeError('This is an error'));
+log.error(new Error('This is an error'));
 
 // require('.').init(); // test legacy warning message
