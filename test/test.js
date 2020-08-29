@@ -1,5 +1,6 @@
 const Logger = require('../lib');
 const log = new Logger(require('./logger'));
+const { format } = require('util');
 
 log.console(log.f(`&b${log.options.name}`));
 log.error({error: 'test'});
@@ -21,6 +22,7 @@ log.console(log.format('&!a!a&r    &!b!b&r    &!c!c&r    &!d!d&r    &!e!e&r    &
 
 log.console(log.format('&a&l&!3(codes)'));
 
+log.ex1(format('Multi:', Logger.isMulti()));
 
 /**
  * MULTI LOGGER
@@ -28,6 +30,7 @@ log.console(log.format('&a&l&!3(codes)'));
 
 log.multi(log); // must be called in main before creating a Child Logger in another file
 
+log.ex1(format('Multi:', Logger.isMulti()));
 log.console(log.format('&0&!9START OF T2'));
 require('./t2')(); // alternatively, do `require('./t2')(log)` without child loggers
 log.console(log.format('&0&!9END OF T2'));
