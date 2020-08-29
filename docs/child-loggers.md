@@ -19,7 +19,7 @@ log.multi(log);
 
 ```js
 // another file (eg. utils.js)
-const ChildLogger = require('leekslazylogger').ChildLogger;
+const { ChildLogger } = require('leekslazylogger');
 const log = new ChildLogger(); // no options, inherits from main
 ```
 
