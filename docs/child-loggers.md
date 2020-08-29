@@ -4,9 +4,7 @@ In your index you should have required leekslazylogger and created a new Logger 
 
 **Don't create another Logger instance in this process - use ChildLoggers.**
 
-To use the Logger in another file (eg. `utils.js`) you could use a ChildLogger, or you could pass `log`.
-
-## Option 1
+To use the Logger in another file (eg. `utils.js`) use a ChildLogger, (or you could just pass `log`).
 
 **Using a ChildLogger**
 
@@ -14,6 +12,8 @@ Pass the `log` object to the `log.multi()` function once, then create ChildLogge
 
 ```js
 // index.js
+const Logger = require('leekslazylogger');
+const log = new Logger({});
 log.multi(log);
 ```
 
@@ -21,16 +21,14 @@ log.multi(log);
 // another file (eg. utils.js)
 const { ChildLogger } = require('leekslazylogger');
 const log = new ChildLogger(); // no options, inherits from main
+
+log.info('Hello');
 ```
 
-## Option 2
+??? example "Alternative"
 
-**Passing the `log` object**
-
-Simple, just use the same `log` object in every file.
-
-```js
-// index.js
-const utils = require('./utils.js');
-utils.myFunction(log, ...);
-```
+	```js
+	// index.js
+	const utils = require('./utils.js');
+	utils.myFunction(log, ...);
+	```
