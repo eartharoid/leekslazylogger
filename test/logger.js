@@ -5,7 +5,8 @@ module.exports = {
 			title: 'Test'
 		},
 		ex1: {
-			title: 'normal example',
+			title: 'INFO',
+			prefix: 'normal example',
 			foreground: 'black',
 			background: 'bgCyan'
 		},

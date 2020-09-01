@@ -40,11 +40,18 @@ log.sql('Something about the database');
 // -> [00:00:00 | MYSQL] Something about the database
 ```
 
+!!! example "Format"
+	`[TIMESTAMP | TITLE] [PREFIX] Text`
+
 ## Options
 
 ### title
 
-A string that will show with the timestamp (it will be logged in uppercase)
+A string that will show with the timestamp (it will be in uppercase)
+
+### prefix
+
+Prefix string which goes after timestamp/title and before text (wrapped in [])
 
 ### foreground
 
@@ -57,4 +64,3 @@ A resolvable background [colour](/colours) to colour the background.
 ### type
 
 Changes the `console` function. Defaults to `info`
-

@@ -1,6 +1,6 @@
 {
 	"name": "leekslazylogger",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "An easy-to-use and lightweight Node.JS logger with file support, colours, and timestamps.",
 	"main": "lib/",
 	"funding": "https://github.com/eartharoid/leekslazylogger?sponsor=1",
