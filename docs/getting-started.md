@@ -20,7 +20,7 @@ And require it in your code:
 
 ```js
 const Logger = require('leekslazylogger');
-const log = new Logger({options});
+const log = new Logger(options);
 ```
 
 !!! warning
@@ -35,7 +35,7 @@ Please refer to [Child loggers](/child-loggers) for information about using the 
 Each log type (default or custom) can be used like this:
 
 ```js
-log.type(text, [colours]); // colour overrides are optional
+log.type(text [, colours]); // colour overrides are optional
 ```
 
 !!! example "Examples"

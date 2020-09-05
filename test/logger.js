@@ -12,6 +12,7 @@ module.exports = {
 		},
 		ex2: {
 			title: 'hex example',
+			prefix: 'hex',
 			foreground: '#00FF21',
 			type: 'warn'
 		},
@@ -28,6 +29,12 @@ module.exports = {
 			title: 'another example',
 			foreground: '&1',
 			background: '&!2'
+		},
+		thing: {
+			prefix: 'thing'
+		},
+		warn: {
+			prefix: 'OH NO! A WARNING!'
 		}
 	},
 	logToFile: true,

@@ -22,22 +22,6 @@ log.console(log.format('&!a!a&r    &!b!b&r    &!c!c&r    &!d!d&r    &!e!e&r    &
 
 log.console(log.format('&a&l&!3(codes)'));
 
-log.ex1(format('Multi:', Logger.isMulti()));
-
-/**
- * MULTI LOGGER
- */
-
-log.multi(log); // must be called in main before creating a Child Logger in another file
-
-log.ex1(format('Multi:', Logger.isMulti()));
-log.console(log.format('&0&!9START OF T2'));
-require('./t2')(); // alternatively, do `require('./t2')(log)` without child loggers
-log.console(log.format('&0&!9END OF T2'));
-
-
-
-
 log.info('INFOOOOOO');
 log.warn('warning');
 
@@ -45,26 +29,24 @@ setTimeout(() => {
 	log.info('beep');
 }, 1000);
 
-// setInterval(() => {
-// 	log.warn(log.stamp());
-// }, 1000);
-
-
-log.basic('basic');
-log.console('console');
-log.info('info');
-log.success('success');
-log.debug('debug');
-log.warn('warn');
-log.notice('notice');
-log.error('error');
-
 log.debug(log.path);
 
 log.warn([{a: [1]}, 0, '']);
 log.warn(1);
 log.console(log.format('&ahello'));
 
-log.error(new Error('This is an error'));
+log.ex1(log.defaults.name);
 
-// require('.').init(); // test legacy warning message
+/**
+ * MULTI LOGGER
+ */
+
+log.ex1(format('Multi:', Logger.isMulti()));
+log.console(log.format('&0&!9START OF T2'));
+require('./t2')(); // alternatively, do `require('./t2')(log)` without child loggers
+log.console(log.format('&0&!9END OF T2'));
+
+
+log.error(new Error('This is not a real error'));
+
+// require('../lib').init(); // test legacy warning message

@@ -1,12 +1,13 @@
 {
 	"name": "leekslazylogger",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"description": "An easy-to-use and lightweight Node.JS logger with file support, colours, and timestamps.",
 	"main": "lib/",
 	"funding": "https://github.com/eartharoid/leekslazylogger?sponsor=1",
 	"dependencies": {
 		"@eartharoid/dtf": "^1.0.7",
-		"leeks.js": "0.0.9"
+		"leeks.js": "0.0.9",
+		"lodash.merge": "^4.6.2"
 	},
 	"scripts": {
 		"test": "node test/test"

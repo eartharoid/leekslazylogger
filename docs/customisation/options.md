@@ -4,7 +4,7 @@ When you create your Logger instance you can pass an object containing options &
 
 ```js
 const Logger = require('leekslazylogger');
-const log = new Logger({});
+const log = new Logger(options);
 ```
 
 The object may take up many lines, so you could:
@@ -19,7 +19,7 @@ const log = new Logger(require('./logger.js'));
 const { debug_mode } = require('./config.js');
 module.exports = {
 	name: 'Example',
-	custom: {...},
+	custom: { /* custom / default overrides */ },
 	debug: debug_mode
 }
 ```

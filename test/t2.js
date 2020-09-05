@@ -7,9 +7,8 @@ module.exports = () => {
 	log.info('beep');
 	log.ex1('This is a test of Child Loggers');
 
-	for (let t in log.custom) log[t](log.format(`&d${t} from t2`));
-
 	for (let c in leeks.colours) log.test(leeks.colours[c](c));
+	for (let t in log.options.types) log[t](t);
 
 	log.info(log.format('&a&l&!3hello from t2.js'));
 	log.notice('hey');

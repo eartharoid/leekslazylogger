@@ -12,7 +12,7 @@ leekslazylogger is an easy-to-use and lightweight Node.JS logger with file suppo
 - 8 default log types and ability to add custom types
 - Standard/RGB/HEX/8Bit colours
 - UK and US spellings
-- Short colour codes for fast colour (Minecraft-like, "&cred text")
+- Short colour codes for fast colour (`&cred text` -> `red text` in red)
 - Debug mode (ignores debug messages unless told not to)
 - Custom timestamp and date format for file names
 - Automatically cleans-up old logs (optional)
@@ -31,4 +31,4 @@ If you can't find what you're looking for here, ask for help in [#support](https
 
 ## Donate
 
-[Buy me a coffee if you want :)](https://ko-fi.com/eartharoid)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/eartharoid)

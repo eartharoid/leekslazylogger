@@ -9,7 +9,7 @@ To use colours (other than &codes) inline, you must import leeks.js (which you h
 	const leeks = require('leeks.js');
 	```
 
-	**BUT** I recommend using &codes if you want to use inline colours, so this isn't necessary.
+	**BUT** I recommend using &codes instead if you want to use inline colours.
 
 **Using overrides:**
 
