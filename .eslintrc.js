@@ -32,6 +32,12 @@ module.exports = {
 		],
 		'no-control-regex': [
 			'off'
+		],
+		'no-console': [
+			'off'
+		],
+		'no-mixed-spaces-and-tabs': [
+			'off'
 		]
 	}
 };
