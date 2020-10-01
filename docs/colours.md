@@ -43,7 +43,7 @@ A name of a colour (string or function).
 === "Inline"
 
 	```js
-	log.info(`this part is normal info colour ${leeks.colours.red('but this part is red')}, 
+	log.info(`this part is normal info colour ${leeks.colours.red('but this part is red')},
 	although this is also red :(`); // better to use &codes for inline
 	```
 
