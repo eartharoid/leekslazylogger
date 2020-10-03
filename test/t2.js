@@ -1,4 +1,5 @@
-const ChildLogger = require('../lib').ChildLogger;
+// const { ChildLogger } = require('../lib');
+const ChildLogger = require('../lib');
 const log = new ChildLogger();
 const leeks = require('leeks.js');
 
