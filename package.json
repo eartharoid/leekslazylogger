@@ -15,7 +15,7 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@eartharoid/dtf": "^1.0.7",
+		"@eartharoid/dtf": "^1.0.8",
 		"leeks.js": "0.0.9",
 		"lodash.merge": "^4.6.2"
 	},
