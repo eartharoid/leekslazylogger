@@ -35,6 +35,8 @@ The ```app.use(log.express);``` must be one of the first middleware, before the 
 
 ## Options
 
+ExpressLogger takes the [same options as normal](/customisation/options/), as well as `express.format`.
+
 The default format is:
 `{method} &7{path} {status-colour}{status} {time-colour}({time})`
 
