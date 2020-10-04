@@ -39,13 +39,19 @@ fastify.listen(8080);
 
 ## Options
 
-FastifyLogger takes the [same options as normal](/customisation/options/), as well as a `fastify` object:
+FastifyLogger takes the [same options as normal](/customisation/options/):
 
 ```js
 const log = new FastifyLogger({
-	fastify: {
-		format: ''
-	}
+	name: 'My fastify server'
+});
+```
+
+And the fastify plugin also takes options:
+
+```js
+fastify.register(log.fastify, {
+	format: '{method} &7{path}'
 });
 ```
 
