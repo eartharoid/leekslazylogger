@@ -1,45 +1,46 @@
-# Express middleware
+# Fastify plugin
 
 ## Installation
 
-`npm i leekslazylogger-express`
+`npm i leekslazylogger-fastify`
 
 ## Usage
 
 ```js
 // set up logger with options
-const ExpressLogger = require('leekslazylogger-express');
-const log = new ExpressLogger({
-	name: 'My express server', // regular options such as custom types
-	express: {
-		format: '{method} &7{path}' // optional
-	}
+const FastifyLogger = require('leekslazylogger-fastify');
+const log = new FastifyLogger({
+	name: 'My fastify server', // regular options such as custom types
 });
 
-// require express
-const express = require('express');
-const app = express();
+// require fastify
+const fastify = require('fastify')();
 
-// use logger middleware
-app.use(log.express);
+// use logger plugin
+fastify.register(log.fastify);
+// OR
+fastify.register(log.fastify, {
+	format: '{method} &7{path}' // optional
+});
 
 ...
-// other middleware and router
+// other plugins and router
 ...
 
 // start server
-app.listen(8080);
+fastify.listen(8080);
 ```
 
-The ```app.use(log.express);``` must be one of the first middleware, before the routing.
+
+The ```app.use(log.fastify);``` must be one of the first plugin, before the routing.
 
 ## Options
 
-ExpressLogger takes the [same options as normal](/customisation/options/), as well as an `express` object:
+FastifyLogger takes the [same options as normal](/customisation/options/), as well as a `fastify` object:
 
 ```js
-const log = new ExpressLogger({
-	express: {
+const log = new FastifyLogger({
+	fastify: {
 		format: ''
 	}
 });
@@ -58,7 +59,7 @@ The available placeholders for setting your own format are:
 
 - `{method}`: GET/POST etc
 - `{protocol}`: HTTP or HTTPS
-- `{route}`: express route name (eg: `/users/:id`)
+- `{route}`: fastify route name (eg: `/users/:id`)
 - `{path}`: Full path (no query)
 - `{status-colour}` / `{status-color}`: green/orange/blue/red colour code based on status code (to prefix status)
 - `{status}`: status code (200, 301, 404 etc)
