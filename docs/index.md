@@ -9,7 +9,7 @@ leekslazylogger is an easy-to-use and lightweight Node.JS logger with file suppo
 ## Features
 
 - [Highly customisable](/customisation)
-- Extensions for popular frameworks (such as express.js and fastify)
+- Extensions for popular frameworks (including express.js and fastify)
 - 8 default log types and ability to add custom types
 - Standard/RGB/HEX/8Bit colours
 - UK and US spellings
