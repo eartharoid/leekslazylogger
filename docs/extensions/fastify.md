@@ -1,5 +1,7 @@
 # Fastify plugin
 
+This is very similar to the [express](./express) extension and provides the same features but in a slightly different way. Rather than passing the options (for custom format) when creating your logger instance, you pass another options object when registering the plugin.
+
 ## Installation
 
 `npm i leekslazylogger-fastify`
@@ -31,8 +33,9 @@ fastify.register(log.fastify, {
 fastify.listen(8080);
 ```
 
+## Screenshot
 
-The ```app.use(log.fastify);``` must be one of the first plugin, before the routing.
+![image](https://i.imgur.com/1anKOAc.png)
 
 ## Options
 
@@ -46,14 +49,14 @@ const log = new FastifyLogger({
 });
 ```
 
-## Format
+### Format
 
 The default format is:
 `{method} {status-colour}{status} &7{path} {time-colour}({time})`
 
 The string **can** include [colour codes](/colours/#leeksjs-short-codes).
 
-### Placeholders
+#### Placeholders
 
 The available placeholders for setting your own format are:
 

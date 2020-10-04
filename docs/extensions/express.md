@@ -33,6 +33,10 @@ app.listen(8080);
 
 The ```app.use(log.express);``` must be one of the first middleware, before the routing.
 
+## Screenshot
+
+![image](https://i.imgur.com/1anKOAc.png)
+
 ## Options
 
 ExpressLogger takes the [same options as normal](/customisation/options/), as well as an `express` object:
@@ -45,14 +49,14 @@ const log = new ExpressLogger({
 });
 ```
 
-## Format
+### Format
 
 The default format is:
 `{method} {status-colour}{status} &7{path} {time-colour}({time})`
 
 The string **can** include [colour codes](/colours/#leeksjs-short-codes).
 
-### Placeholders
+#### Placeholders
 
 The available placeholders for setting your own format are:
 
