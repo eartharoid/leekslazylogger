@@ -1,6 +1,6 @@
 # Extensions
 
-Extensions extend the Logger class to provide additional functionality. 
+Extensions extend the Logger class to provide additional functionality.
 
 Current extensions:
 
