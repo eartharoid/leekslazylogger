@@ -30,7 +30,7 @@ where `foregroundColour` and `backgroundColour` are resolvable [colours](/colour
 
 A name of a colour (string or function).
 
-**A full list of leeks.js colour names and style names can be found [here](https://derpyenterprises.org/docs/#/leeks?id=colors).**
+**A full list of leeks.js colour names and style names can be found [here](https://docs.derpyenterprises.org/#/leeks?id=colors).**
 
 === "Override"
 
