@@ -23,12 +23,10 @@ const Logger = require('leekslazylogger');
 const log = new Logger(options);
 ```
 
-!!! warning
-	Don't create another Logger instance in this process - use [ChildLoggers](/child-loggers).
+!!! tip
+	Logger instances in the same process share options. Additional logger instances (if you create more in other files) will have the same log functions.
 
 For `options`, see [Customisation/Options](/customisation/options).
-
-Please refer to [Child loggers](/child-loggers) for information about using the logger in multiple files.
 
 ## Basic usage
 
@@ -65,8 +63,8 @@ This will colour the **entire** line, including the timestamp  & title.
 Use the `log.format()` function to colour text using &codes;
 
 ```js
-log.console(log.format('&athis is green &4and this is red'));
+log.console(Logger.format('&athis is green &4and this is red'));
 ```
 
 !!! tip
-	You can use `log.f()` too.
+	You can use `Logger#f()` too.
