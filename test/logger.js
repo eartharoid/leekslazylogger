@@ -1,5 +1,6 @@
 module.exports = {
 	name: 'Logger Test',
+	// directory: require('path').join(__dirname, '/special-logs'),
 	custom: {
 		test: {
 			title: 'Test'

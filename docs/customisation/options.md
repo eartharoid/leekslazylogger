@@ -97,6 +97,17 @@ module.exports = {
 	```js
 	debug: config.debug,
 	```
+### directory
+
+- Logs directory name or path
+- Type: string
+- Default: `./logs/`
+
+??? example
+
+	```js
+	directory: require('path').join(__dirname, '/log-files/'),
+	```
 
 ### custom
 
