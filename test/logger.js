@@ -1,6 +1,8 @@
 module.exports = {
 	name: 'Logger Test',
 	// directory: require('path').join(__dirname, '/special-logs'),
+	// timestamp: 'DD/MM/YY HH:mm:ss',
+	// timestamp: () => Date.now(),
 	custom: {
 		test: {
 			title: 'Test'

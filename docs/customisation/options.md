@@ -52,9 +52,9 @@ module.exports = {
 
 ### timestamp
 
-- A valid timestamp format. Refer to [dtf docs](https://github.com/eartharoid/dtf/#placeholders).
-- Type: string
-- Default: `HH:mm:ss`
+- A valid timestamp format, or a function that returns a string. Refer to [dtf docs](https://github.com/eartharoid/dtf/#placeholders).
+- Type: string or function
+- Default: `'HH:mm:ss'`
 
 ??? example
 
@@ -101,7 +101,7 @@ module.exports = {
 
 - Logs directory name or path
 - Type: string
-- Default: `./logs/`
+- Default: `'./logs/'`
 
 ??? example
 
