@@ -1,6 +1,6 @@
 {
 	"name": "leekslazylogger",
-	"version": "2.1.1",
+	"version": "2.2.0",
 	"description": "An easy-to-use and lightweight Node.JS logger with file support, colours, and timestamps.",
 	"main": "lib/",
 	"types": "lib/index.d.ts",
@@ -16,7 +16,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@eartharoid/dtf": "^1.0.8",
-		"leeks.js": "0.0.9",
+		"leeks.js": "0.1.0",
 		"lodash.merge": "^4.6.2"
 	},
 	"homepage": "leeks.js.org/logger",
@@ -47,5 +47,8 @@
 		"lazy",
 		"leeks",
 		"leeks.js"
-	]
+	],
+	"devDependencies": {
+		"eslint": "^7.20.0"
+	}
 }

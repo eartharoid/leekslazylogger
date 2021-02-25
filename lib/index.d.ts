@@ -10,6 +10,7 @@ declare module 'leekslazylogger' {
 	interface LoggerOptions {
 		name: string,
 		logToFile: boolean,
+		format: Object,
 		timestamp: string,
 		maxAge: number,
 		keepSilent: boolean,
@@ -24,10 +25,4 @@ declare module 'leekslazylogger' {
 	export default class Logger {
 		constructor(options?: LoggerOptions);
 	}
-
-	/**
-	 * @description Deprecated
-	 * @deprecated Read the docs: logger.eartharoid.me
-	 */
-	export const init: (o?: Object) => void;
 }

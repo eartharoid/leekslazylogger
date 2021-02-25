@@ -1,8 +1,69 @@
 const Logger = require('../lib');
-const log = new Logger(require('./logger'));
+const log = new Logger({
+	name: 'Logger Test',
+	// directory: require('path').join(__dirname, '/special-logs'),
+	// timestamp: 'DD/MM/YY HH:mm:ss',
+	// timestamp: () => Date.now(),
+	custom: {
+		test: {
+			title: 'Test'
+		},
+		ex1: {
+			title: 'INFO',
+			prefix: 'normal example',
+			foreground: 'black',
+			background: 'bgCyan'
+		},
+		ex2: {
+			title: 'hex example',
+			prefix: 'hex',
+			foreground: '#00FF21',
+			type: 'warn'
+		},
+		ex3: {
+			title: 'rgb example',
+			foreground: '0, 255, 255',
+			type: 'error'
+		},
+		ex4: {
+			title: '8bit example',
+			foreground: 16
+		},
+		ex5: {
+			title: 'another example',
+			foreground: '&1',
+			background: '&!2'
+		},
+		thing: {
+			prefix: 'thing'
+		},
+		warn: {
+			prefix: 'OH NO! A WARNING!'
+		}
+	},
+	logToFile: true,
+	maxAge: 1,
+	keepSilent: false,
+	daily: true,
+	debug: true
+});
+
+const leeks = require('leeks.js');
 
 log.console(Logger.f(`&b${log.options.name}`));
-log.error({error: 'test'});
+log.error({ error: 'test' });
+
+log.console(Logger.format(`This is ${log.options.name}, from &atest.js`));
+log.info('beep');
+log.ex1('Hello world!');
+
+for (let c in leeks.colours) log.test(leeks.colours[c](c));
+for (let t in log.options.types) log[t](t);
+
+log.info(Logger.format('&a&l&!3hello from t2.js'));
+log.notice('hey');
+
+
 
 log.info(Logger.format('&1whiteBright'), ['black', 'whiteBright']); // bg works if you forget to use a bg colour name
 log.info(Logger.format('&1bgWhiteBright'), ['black', 'bgWhiteBright']);
@@ -37,8 +98,13 @@ log.console(Logger.format('&ahello'));
 log.ex1(log.defaults.name);
 
 log.console(Logger.format('&0&!9START OF T2'));
-require('./t2')(log);
 log.console(Logger.format('&0&!9END OF T2'));
 
 console.log('hey');
 log.error(new Error('This is not a real error'));
+
+log.console(undefined);
+log.console(null);
+log.console({});
+log.console('');
+log.console(0);
