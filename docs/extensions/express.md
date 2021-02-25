@@ -51,7 +51,8 @@ ExpressLogger takes the [same options as normal](/customisation/options/), as we
 ```js
 const log = new ExpressLogger({
 	express: {
-		format: ''
+		format: '{method} &7{path}',
+		type: 'console'
 	}
 });
 ```

@@ -58,7 +58,8 @@ And the fastify plugin also takes options:
 
 ```js
 fastify.register(log.fastify, {
-	format: '{method} &7{path}'
+	format: '{method} &7{path}',
+	type: 'console'
 });
 ```
 
