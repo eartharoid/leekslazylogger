@@ -13,6 +13,12 @@ This is very similar to the [express](./express) extension and provides the same
 const FastifyLogger = require('leekslazylogger-fastify');
 const log = new FastifyLogger({
 	name: 'My fastify server', // regular options such as custom types
+	custom: {
+		http: {
+			title: 'info',
+			prefix: 'http'
+		}
+	}
 });
 
 // require fastify
@@ -22,7 +28,8 @@ const fastify = require('fastify')();
 fastify.register(log.fastify);
 // OR
 fastify.register(log.fastify, {
-	format: '{method} &7{path}' // optional
+	format: '{method} &7{path}', // optional
+	type: 'http'
 });
 
 ...

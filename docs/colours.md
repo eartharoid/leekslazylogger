@@ -83,7 +83,7 @@ A string containing an `&fg` or `&!bg` short code for a leeks.js colour. All sho
 
 Don't put a space between codes and text when using them inline (`&cred` not `&c red`) as the space will show.
 
-Use `log.f(String)` or `log.format(String)` to use inline colours.
+Use `Logger.f(String)` or `Logger.format(String)` to use inline colours.
 
 === "Override"
 
@@ -96,7 +96,7 @@ Use `log.f(String)` or `log.format(String)` to use inline colours.
 === "Inline"
 
 	```js
-	log.info(log.format(`this is normal info colour, &athis is light green
+	log.info(Logger.format(`this is normal info colour, &athis is light green
 	&3,and it\'s easy to return to the normal colour`));
 	```
 

@@ -11,8 +11,15 @@
 const ExpressLogger = require('leekslazylogger-express');
 const log = new ExpressLogger({
 	name: 'My express server', // regular options such as custom types
-	express: {
-		format: '{method} &7{path}' // optional
+	express: { // optional
+		format: '{method} &7{path}',
+		type: 'http'
+	},
+	custom: {
+		http: {
+			title: 'info',
+			prefix: 'http'
+		}
 	}
 });
 
