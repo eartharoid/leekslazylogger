@@ -1,6 +1,6 @@
 # Customisation
 
-See [`defaults.js](https://github.com/eartharoid/leekslazylogger/blob/master/lib/defaults.js
+See [`defaults.js`](https://github.com/eartharoid/leekslazylogger/blob/master/lib/defaults.js
 ) for defaults.
 
 ## Logger options
