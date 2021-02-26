@@ -1,5 +1,5 @@
 arrange:
  - index.md
  - getting-started.md
- - log-types.md
+ - log-levels.md
  - ...

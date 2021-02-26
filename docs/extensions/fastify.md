@@ -12,7 +12,7 @@ This is very similar to the [express](./express) extension and provides the same
 // set up logger with options
 const FastifyLogger = require('leekslazylogger-fastify');
 const log = new FastifyLogger({
-	name: 'My fastify server', // regular options such as custom types
+	name: 'My fastify server', // regular options such as custom levels
 	custom: {
 		http: {
 			title: 'info',
@@ -29,7 +29,7 @@ fastify.register(log.fastify);
 // OR
 fastify.register(log.fastify, {
 	format: '{method} &7{path}', // optional
-	type: 'http'
+	level: 'http'
 });
 
 ...
@@ -59,7 +59,7 @@ And the fastify plugin also takes options:
 ```js
 fastify.register(log.fastify, {
 	format: '{method} &7{path}',
-	type: 'console'
+	level: 'console'
 });
 ```
 
@@ -68,7 +68,7 @@ fastify.register(log.fastify, {
 The default format is:
 `{method} {status-colour}{status} &7{path} {time-colour}({time})`
 
-The string **can** include [colour codes](/colours/#leeksjs-short-codes).
+The string **can** include [colour codes](/colours-and-styles/#leeksjs-short-codes).
 
 #### Placeholders
 

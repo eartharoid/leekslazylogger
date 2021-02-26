@@ -1,25 +1,26 @@
 declare module 'leekslazylogger' {
 
-	interface CustomType {
-		type: string,
-		title: string,
-		foreground: string|number,
-		background: string|number
+	interface LogLevel {
+		type?: 'log' | 'info' | 'debug' | 'warn' | 'error',
+		format: string
 	}
 
 	interface LoggerOptions {
-		name: string,
-		logToFile: boolean,
-		format: Object,
-		timestamp: string,
-		maxAge: number,
-		keepSilent: boolean,
-		debug: boolean,
-		custom: Object<CustomType>
+		name?: string,
+		logToFile?: boolean,
+		header?: boolean,
+		format?: Object,
+		timestamp?: string,
+		maxAge?: number,
+		keepSilent?: boolean,
+		debug?: boolean,
+		daily?: boolean,
+		directory?: string,
+		levels: Object<LogLevel>
 	}
 
 	/**
-	 * @description Logger object with options (o)
+	 * @description Logger object with options
 	 * @param {LoggerOptions} options - customise your logger with options
 	 */
 	export default class Logger {

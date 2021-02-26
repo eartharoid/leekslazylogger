@@ -1,25 +1,26 @@
-# Colours
+# Colours and styles
 
-To use colours (other than &codes) inline, you must import leeks.js (which you have already installed as it is one of the two dependencies). **I recommend using &codes if you want to use inline colours,**
+To use colours (other than &codes) inline, you must import leeks.js (which you have already installed as it is one of the dependencies).
 
 ??? example
 	**Require leeks.js** to use inline colours other than &codes:
 
 	```js
 	const leeks = require('leeks.js');
+	log.console(leeks.colours.red('red!'));
 	```
 
-	**BUT** I recommend using &codes instead if you want to use inline colours.
+	I recommend using &codes instead if you want to use inline colours.
 
 **Using overrides:**
 
 ```js
 log.info(text, [foregroundColour]);
 log.info(text, [foregroundColour, backgroundColour]);
-log.info(text, [backgroundColour]);
+log.info(text, [backgroundColour]); // only works for colour names and short codes, not RGB/HEX/8Bit
 ```
 
-where `foregroundColour` and `backgroundColour` are resolvable [colours](/colours).
+where `foregroundColour` and `backgroundColour` are resolvable [colours](/colours-and-styles).
 
 !!! info
 	If you give both a foreground and background colour, and the background colour given is the name or &code of a foreground colour, the background colour will be converted to an actual background colour. As RGB/HEX/8bit colours do not have specific foreground/background codes, if you wish to use an RGB/HEX/8bit colour for the background you must also give a foreground colour.
@@ -30,7 +31,7 @@ where `foregroundColour` and `backgroundColour` are resolvable [colours](/colour
 
 A name of a colour (string or function).
 
-**A full list of leeks.js colour names and style names can be found [here](https://docs.derpyenterprises.org/#/leeks?id=colors).**
+**A full list of leeks.js colour names and style names can be found [here](https://docs.davidjcralph.co.uk/#/leeks?id=colors).**
 
 === "Override"
 
@@ -51,7 +52,7 @@ A name of a colour (string or function).
 
 A string of numbers separated by commas (with or without spaces).
 
-See [leeks.js docs](https://derpyenterprises.org/docs/#/leeks?id=usage) for inline usage.
+See [leeks.js docs](https://docs.davidjcralph.co.uk/#/leeks?id=usage) for inline usage.
 
 ```js
 log.info('some text', ['123, 123, 123', '321, 321, 321']);
@@ -61,7 +62,7 @@ log.info('some text', ['123, 123, 123', '321, 321, 321']);
 
 A string with a HEX code (**with** hashtag).
 
-See [leeks.js docs](https://derpyenterprises.org/docs/#/leeks?id=usage) for inline usage.
+See [leeks.js docs](https://docs.davidjcralph.co.uk/#/leeks?id=usage) for inline usage.
 
 ```js
 log.info('some text', ['#AABBCC', '#123456']);
@@ -71,13 +72,13 @@ log.info('some text', ['#AABBCC', '#123456']);
 
 A number. *You will get an error if you try to put the number in a string.*
 
-See [leeks.js docs](https://derpyenterprises.org/docs/#/leeks?id=usage) for inline usage.
+See [leeks.js docs](https://docs.davidjcralph.co.uk/#/leeks?id=usage) for inline usage.
 
 ```js
 log.info('some text', [16, 1]);
 ```
 
-### &code
+### Short codes
 
 A string containing an `&fg` or `&!bg` short code for a leeks.js colour. All short codes are [listed below](#leeksjs-short-codes).
 

@@ -10,10 +10,10 @@
 // set up logger with options
 const ExpressLogger = require('leekslazylogger-express');
 const log = new ExpressLogger({
-	name: 'My express server', // regular options such as custom types
+	name: 'My express server', // regular options such as custom levels
 	express: { // optional
 		format: '{method} &7{path}',
-		type: 'http'
+		level: 'http'
 	},
 	custom: {
 		http: {
@@ -52,7 +52,7 @@ ExpressLogger takes the [same options as normal](/customisation/options/), as we
 const log = new ExpressLogger({
 	express: {
 		format: '{method} &7{path}',
-		type: 'console'
+		level: 'console'
 	}
 });
 ```
@@ -62,7 +62,7 @@ const log = new ExpressLogger({
 The default format is:
 `{method} {status-colour}{status} &7{path} {time-colour}({time})`
 
-The string **can** include [colour codes](/colours/#leeksjs-short-codes).
+The string **can** include [colour codes](/colours-and-styles/#leeksjs-short-codes).
 
 #### Placeholders
 

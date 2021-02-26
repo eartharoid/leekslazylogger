@@ -4,29 +4,41 @@
 
 ## About
 
-leekslazylogger is an easy-to-use and lightweight Node.JS logger with file support, colours, and timestamps.
+leekslazylogger is an easy-to-use and lightweight Node.JS logger with colours & styles, log files, and timestamps.
 
 ## Features
 
+Some of the things that make leekslazylogger awesome:
+
 - [Highly customisable](https://logger.eartharoid.me/customisation)
+- 8 default log levels and ability to add more or modify the defaults
 - Extensions for popular frameworks (including express.js and fastify)
-- 8 default log types and ability to add custom types
-- Standard/RGB/HEX/8Bit colours
-- UK and US spellings
-- Short colour codes for fast colour (`&cred text` -> `red text` in red)
+- Uses [leeks.js](https://github.com/davidjcralph/leeks.js) (supports RGB and HEX)
+- Short codes for fast inline colours and styles (like Minecraft!)
 - Debug mode (ignores debug messages unless told not to)
-- Custom timestamp and date format for file names
+- Custom timestamp formats
+- Log files
 - Automatically cleans-up old logs (optional)
 - Strips colour if it's not supported in the environment
 - Cross-platform
 
+## Screenshots
+
+### The default log levels
+
+![The default log levels](https://i.imgur.com/wSrwEJD.png)
+
+### An example of custom log level formats
+
+![Custom log level formats](https://i.imgur.com/DNOkj7Y.png)
+
 ## Getting Started
 
-For installation and usage instructions/examples, see [Getting Started](https://logger.eartharoid.me/getting-started)
+For installation and usage instructions/examples, see [Getting Started](https://logger.eartharoid.me/getting-started).
 
 ## Support
 
-**[Go to the wiki](https://logger.eartharoid.me)**, or ask for help in [#support](https://discordapp.com/channels/451745464480432129/475351519516950548) on [Discord](https://discord.gg/pXc9vyC).
+**[Go to the docs](https://logger.eartharoid.me)**, or ask for help in [#general-support](https://discordapp.com/channels/451745464480432129/475351519516950548) on [Discord](https://discord.gg/pXc9vyC).
 
 [![Discord](https://discordapp.com/api/guilds/451745464480432129/widget.png?style=banner4)](https://discord.gg/pXc9vyC)
 
