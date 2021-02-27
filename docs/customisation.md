@@ -10,13 +10,14 @@ Types:
 ```ts
 {
 	name?: String,
-	logToFile?: Boolean,
-	header?: Boolean,
 	timestamp?: String,
+	logToFile?: Boolean,
+	splitFile?: Boolean,
+	header?: Boolean,
 	maxAge?: Number,
+	daily?: Boolean,
 	keepSilent?: Boolean,
 	debug?: Boolean,
-	daily?: Boolean,
 	directory?: String,
 	levels?: Object
 }
@@ -27,25 +28,35 @@ Types:
 
 	The name of your program. Appears in log file headers.
 
+??? summary "timestamp"
+	## timestamp
+
+	A [dtf](https://github.com/eartharoid/dtf#readme) timestamp format.
+
 ??? summary "logToFile"
 	## logToFile
 
 	Create and use log files?
+
+??? summary "splitFile"
+	## splitFile
+
+	Split log file into separate stdout and stderr files?
 
 ??? summary "header"
 	## header
 
 	Include the header in log files?
 
-??? summary "timestamp"
-	## timestamp
-
-	A [dtf](https://github.com/eartharoid/dtf#readme) timestamp format.
-
 ??? summary "maxAge"
 	## maxAge
 
 	The number of days to keep log files for.
+
+??? summary "daily"
+	## daily
+
+	Create 1 file per day? Otherwise creates 1 file per run.
 
 ??? summary "keepSilent"
 	## keepSilent
@@ -56,11 +67,6 @@ Types:
 	## debug
 
 	If false, log levels with the type of `debug` are ignored.
-
-??? summary "daily"
-	## daily
-
-	Create 1 file per day? Otherwise creates 1 file per run.
 
 ??? summary "directory"
 	## directory

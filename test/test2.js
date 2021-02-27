@@ -4,6 +4,8 @@ const log = new Logger({
 	name: 'test 2',
 	debug: true,
 	timestamp: 'DD/MM/YY HH:mm:ss',
+	// splitFile: true,
+	// header: false,
 	levels: {
 		_logger: {
 			format: '&7{timestamp} &0&!f logger &r &f{text}'
@@ -41,3 +43,7 @@ const log = new Logger({
 
 
 for (let t in log.options.levels) log[t](`Hello world, I'm ${t}!`);
+
+// setInterval(() => {
+// 	log.info('...');
+// }, 1000);
