@@ -12,16 +12,10 @@ To submit a new feature request, please use the "Feature request" template when 
 
 ### Submitting other issues
 
-For issues not related to feature requests or bugs, you can [create a blank issue](https://github.com/eartharoid/leekslazylogger/issues/new). Please give us as much information as possible. If you just want to talk, you can join the [Discord server](https://github.com/eartharoid/leekslazylogger#support).
+For issues not related to feature requests or bugs, you can [create a blank issue](https://github.com/eartharoid/leekslazylogger/issues/new). Please give us as much information as possible. If you just want to talk, you can join the [Discord server](https://github.com/eartharoid/leekslazylogger#support) or [start a discussion](https://github.com/eartharoid/leekslazylogger/discussions).
 
 ## Submitting a pull request
 
-To contribute code to this project, create a new [pull request](https://github.com/eartharoid/leekslazylogger/pulls). For anything other than patches (bug fixes, documentation or minor code changes that have no affect on usage), such as a new feature, please create a  [new issue](https://github.com/eartharoid/leekslazylogger/issues/new/choose) first, describing what you intend to change and why. Please ensure you update the documentation if needed.
+To contribute code to this project, create a new [pull request](https://github.com/eartharoid/leekslazylogger/pulls). For anything other than patches (bug fixes, documentation, or minor code changes that have no affect on usage), such as a new feature, please create a [new issue](https://github.com/eartharoid/leekslazylogger/issues/new/choose) first, describing what you intend to change and why. Please ensure you update the documentation if needed.
 
-When contributing, you should follow the same code style already used throughout, to ensure code is consistent.
-
-1. Use single quote marks (`'`) when possible
-2. Template literals are preferred
-3. Commas should always have a space after them
-4. Use tabs, not spaces, and always indent
-5. Use arrow functions
+When contributing, you should follow the same code style already used throughout, to ensure the code is consistent.
