@@ -44,6 +44,13 @@ const log = new Logger({
 
 for (let t in log.options.levels) log[t](`Hello world, I'm ${t}!`);
 
-// setInterval(() => {
-// 	log.info('...');
-// }, 1000);
+setInterval(() => {
+	log.info('...');
+}, 1000);
+log.info('test', ['yellow']);
+log.info('important information, %s', 'here', {
+	thing: 'this'
+});
+log.info('... %s', [], ['some', 'text'], {
+	test: 'hello'
+});

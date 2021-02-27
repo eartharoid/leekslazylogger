@@ -1,6 +1,8 @@
 # Extensions
 
-Extensions extend the Logger class to provide additional functionality.
+Extensions are packages which are drop-in replacements for leekslazylogger.
+
+They extend the Logger class to provide additional functionality.
 
 Current extensions:
 

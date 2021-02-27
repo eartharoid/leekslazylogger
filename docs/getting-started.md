@@ -36,8 +36,12 @@ For `options`, see [customisation](/customisation).
 Each [log level](/log-levels) can be used like this:
 
 ```js
-log.level(text [, colours]); // colour overrides are optional
+log.<level>(text[, colours[, ...extra]]);
 ```
+
+- `text` should be the string you want to log
+- `colours` is an optional array of `[foregroundColour, backgroundColour]`
+- `extra` are optional extras (like `console.log('some %s text', 'awesome', {anObject: true})`)
 
 !!! example "Examples"
 	```js
