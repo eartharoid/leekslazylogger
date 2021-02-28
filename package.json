@@ -1,6 +1,6 @@
 {
 	"name": "leekslazylogger",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "An easy-to-use and lightweight Node.JS logger with colours & styles, log files, and timestamps.",
 	"main": "lib/",
 	"types": "lib/index.d.ts",
