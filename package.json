@@ -15,6 +15,7 @@
 	},
 	"license": "MIT",
 	"dependencies": {
+		"@eartharoid/deep-merge": "^0.0.1",
 		"@eartharoid/dtf": "^1.0.8",
 		"leeks.js": "0.1.1"
 	},

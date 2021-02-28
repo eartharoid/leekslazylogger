@@ -1,6 +1,11 @@
 # leekslazylogger
 
-[![npm](https://img.shields.io/npm/v/leekslazylogger/latest?style=flat-square)](https://www.npmjs.com/package/leekslazylogger)   [![GitHub issues](https://img.shields.io/github/issues/eartharoid/leekslazylogger?style=flat-square)](https://github.com/eartharoid/leekslazylogger/issues)    [![GitHub stars](https://img.shields.io/github/stars/eartharoid/leekslazylogger?style=flat-square)](https://github.com/eartharoid/leekslazylogger/stargazers)    [![GitHub forks](https://img.shields.io/github/forks/eartharoid/leekslazylogger?style=flat-square)](https://github.com/eartharoid/leekslazylogger/network)    [![GitHub license](https://img.shields.io/github/license/eartharoid/leekslazylogger?style=flat-square)](https://github.com/eartharoid/leekslazylogger/blob/master/LICENSE)    ![Codacy grade](https://img.shields.io/codacy/grade/15dc38c312c3430d8ed02c58edb2e8bd?logo=codacy&style=flat-square)    [![Discord support server](https://discordapp.com/api/guilds/451745464480432129/embed.png?style=shield)](https://discord.gg/pXc9vyC)
+[![npm](https://img.shields.io/npm/v/leekslazylogger/latest?style=flat-square)](https://www.npmjs.com/package/leekslazylogger)
+[![GitHub issues](https://img.shields.io/github/issues/eartharoid/leekslazylogger?style=flat-square)](https://github.com/eartharoid/leekslazylogger/issues)
+![Tests](https://img.shields.io/github/workflow/status/eartharoid/deep-merge/Test?label=Test&logo=github&style=flat-square)
+[![GitHub license](https://img.shields.io/github/license/eartharoid/leekslazylogger?style=flat-square)](https://github.com/eartharoid/leekslazylogger/blob/master/LICENSE)
+![Codacy grade](https://img.shields.io/codacy/grade/15dc38c312c3430d8ed02c58edb2e8bd?logo=codacy&style=flat-square)
+[![Discord support server](https://discordapp.com/api/guilds/451745464480432129/embed.png?style=shield)](https://discord.gg/pXc9vyC)
 
 ## About
 
