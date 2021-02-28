@@ -10,17 +10,7 @@
 // set up logger with options
 const ExpressLogger = require('leekslazylogger-express');
 const log = new ExpressLogger({
-	name: 'My express server', // regular options such as custom levels
-	express: { // optional
-		format: '{method} &7{path}',
-		level: 'http'
-	},
-	custom: {
-		http: {
-			title: 'info',
-			prefix: 'http'
-		}
-	}
+	name: 'My express server',
 });
 
 // require express
@@ -28,7 +18,7 @@ const express = require('express');
 const app = express();
 
 // use logger middleware
-app.use(log.express);
+app.use(log.express());
 
 ...
 // other middleware and router
@@ -38,7 +28,7 @@ app.use(log.express);
 app.listen(8080);
 ```
 
-The ```app.use(log.express);``` must be one of the first middleware, before the routing.
+The logger middleware must be one of the first middleware to be added, before the routing.
 
 ## Screenshot
 
@@ -46,23 +36,32 @@ The ```app.use(log.express);``` must be one of the first middleware, before the 
 
 ## Options
 
-ExpressLogger takes the [same options as normal](/customisation/options/), as well as an `express` object:
+You can pass options to customise it:
 
 ```js
+const ExpressLogger = require('leekslazylogger-express');
 const log = new ExpressLogger({
-	express: {
-		format: '{method} &7{path}',
-		level: 'console'
+	name: 'My express server',
+	levels: {
+		http: {
+			title: 'info',
+			prefix: 'http'
+		}
 	}
 });
+
+app.use(log.express({
+	level: 'http',
+	format: '{method} {route} {status}'
+}));
 ```
 
-### Format
+### `format`
 
 The default format is:
-`{method} {status-colour}{status} &7{path} {time-colour}({time})`
+`{status-colour}{status}&r {method} &7{path} {time-colour}({time})`
 
-The string **can** include [colour codes](/colours-and-styles/#leeksjs-short-codes).
+The string **can** include [colour codes](/colours-and-styles/#short-codes).
 
 #### Placeholders
 
@@ -76,3 +75,8 @@ The available placeholders for setting your own format are:
 - `{status}`: status code (200, 301, 404 etc)
 - `{time-colour}` / `{time-color}`: light green/yellow/red colour code based on time (to prefix time)
 - `{time}`: time in ms for request to be completed
+
+### `level`
+
+The logger level (function) to use.
+The default level is `info` (`log.info()`).

@@ -80,7 +80,7 @@ log.info('some text', [16, 1]);
 
 ### Short codes
 
-A string containing an `&fg` or `&!bg` short code for a leeks.js colour. All short codes are [listed below](#leeksjs-short-codes).
+A string containing an `&fg` or `&!bg` short code for a leeks.js colour. All short codes are [listed below](#short-codes).
 
 Don't put a space between codes and text when using them inline (`&cred` not `&c red`) as the space will show.
 
