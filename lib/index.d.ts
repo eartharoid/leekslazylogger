@@ -9,14 +9,14 @@ declare module 'leekslazylogger' {
 		name?: string,
 		logToFile?: boolean,
 		header?: boolean,
-		format?: Object,
+		format?: object,
 		timestamp?: string,
 		maxAge?: number,
 		keepSilent?: boolean,
 		debug?: boolean,
 		daily?: boolean,
 		directory?: string,
-		levels: Object<LogLevel>
+		levels: object<LogLevel>
 	}
 
 	/**
