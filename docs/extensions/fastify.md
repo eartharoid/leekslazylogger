@@ -63,6 +63,19 @@ The default format is:
 
 The string **can** include [colour codes](/colours-and-styles/#short-codes).
 
+**Must be a string, or a function (takes the `req` object) which returns a string.**
+
+Using a function allows use of other data such as the request's IP:
+
+```js
+const requestIp = require('request-ip');
+
+server.use(log.fastify(), {
+	level: 'http',
+	format: req => `${requestIp.getClientIp(req)} {method} {route} {status}`
+});
+```
+
 #### Placeholders
 
 The available placeholders for setting your own format are:
