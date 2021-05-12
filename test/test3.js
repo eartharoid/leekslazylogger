@@ -6,3 +6,5 @@ const log = new Logger({
 });
 
 for (let t in log.options.levels) log[t](`this is a ${t} log`);
+
+console.log(Logger.f('&#!000&#16DC3Bhello'))

@@ -1,6 +1,6 @@
 {
 	"name": "leekslazylogger",
-	"version": "3.0.1",
+	"version": "3.0.2",
 	"description": "An easy-to-use and lightweight Node.JS logger with colours & styles, log files, and timestamps.",
 	"main": "lib/",
 	"types": "lib/index.d.ts",
@@ -17,7 +17,7 @@
 	"dependencies": {
 		"@eartharoid/deep-merge": "^0.0.1",
 		"@eartharoid/dtf": "^1.0.8",
-		"leeks.js": "0.1.1"
+		"leeks.js": "^0.2.2"
 	},
 	"homepage": "leeks.js.org/logger",
 	"funding": "https://github.com/eartharoid/leekslazylogger?sponsor=1",
@@ -47,7 +47,7 @@
 		"leeks.js"
 	],
 	"devDependencies": {
-		"eslint": "^7.25.0",
+		"eslint": "^7.26.0",
 		"node-emoji": "^1.10.0"
 	}
 }
