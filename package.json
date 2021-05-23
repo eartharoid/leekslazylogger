@@ -47,7 +47,7 @@
 		"leeks.js"
 	],
 	"devDependencies": {
-		"eslint": "^7.26.0",
+		"eslint": "^7.27.0",
 		"node-emoji": "^1.10.0"
 	}
 }
