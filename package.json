@@ -48,6 +48,6 @@
 	],
 	"devDependencies": {
 		"eslint": "^7.31.0",
-		"node-emoji": "^1.10.0"
+		"node-emoji": "^1.11.0"
 	}
 }
