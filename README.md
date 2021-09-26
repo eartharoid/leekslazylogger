@@ -18,7 +18,7 @@ Some of the things that make leekslazylogger awesome:
 - [Highly customisable](https://logger.eartharoid.me/customisation)
 - 8 default log levels and ability to add more or modify the defaults
 - Extensions for popular frameworks (including express.js and fastify)
-- Uses [leeks.js](https://github.com/davidjcralph/leeks.js) (supports RGB and HEX)
+- Uses [leeks.js](https://github.com/davidcralph/leeks.js) (supports RGB and HEX)
 - Short codes for fast inline colours and styles (like Minecraft!)
 - Debug mode (ignores debug messages unless told not to)
 - Custom timestamp formats
