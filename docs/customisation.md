@@ -96,7 +96,7 @@ The `format` may contain [short codes](/colours-and-styles#short-codes) and the 
 - `{timestamp}` - The formatted [timestamp](#timestamp) string
 - `{text}` - The text to be logged
 
-To use RGB, HEX, or 8Bit colours you need to import [leeks.js](https://docs.davidjcralph.co.uk/#/leeks). You don't need to install it as it a dependency of leekslazylogger.
+To use RGB, HEX, or 8Bit colours you need to import [leeks.js](https://docs.davidcralph.co.uk/#/leeks). You don't need to install it as it a dependency of leekslazylogger.
 
 Each level can optionally have a `type` property: `console[type](...)`.
 

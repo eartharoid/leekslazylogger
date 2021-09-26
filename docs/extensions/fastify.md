@@ -18,7 +18,7 @@ const fastify = require('fastify');
 const server = fastify();
 
 // use logger plugin
-server.use(log.fastify());
+server.register(log.fastify());
 
 ...
 // other plugins and router
@@ -50,7 +50,7 @@ const log = new FastifyLogger({
 	}
 });
 
-server.use(log.fastify(), {
+server.register(log.fastify(), {
 	level: 'http',
 	format: '{method} {route} {status}'
 });
@@ -70,7 +70,7 @@ Using a function allows use of other data such as the request's IP:
 ```js
 const requestIp = require('request-ip');
 
-server.use(log.fastify(), {
+server.register(log.fastify(), {
 	level: 'http',
 	format: req => `${requestIp.getClientIp(req)} {method} {route} {status}`
 });
