@@ -31,7 +31,7 @@ where `foregroundColour` and `backgroundColour` are resolvable [colours](/colour
 
 A name of a colour (string or function).
 
-**A full list of leeks.js colour names and style names can be found [here](https://docs.davidjcralph.co.uk/#/leeks?id=colors).**
+**A full list of leeks.js colour names and style names can be found [here](https://docs.davidcralph.co.uk/#/leeks?id=colors).**
 
 === "Override"
 
@@ -52,7 +52,7 @@ A name of a colour (string or function).
 
 A string of numbers separated by commas (with or without spaces).
 
-See [leeks.js docs](https://docs.davidjcralph.co.uk/#/leeks?id=usage) for inline usage.
+See [leeks.js docs](https://docs.davidcralph.co.uk/#/leeks?id=usage) for inline usage.
 
 ```js
 log.info('some text', ['123, 123, 123', '321, 321, 321']);
@@ -62,7 +62,7 @@ log.info('some text', ['123, 123, 123', '321, 321, 321']);
 
 A string with a HEX code (**with** hashtag).
 
-See [leeks.js docs](https://docs.davidjcralph.co.uk/#/leeks?id=usage) for inline usage.
+See [leeks.js docs](https://docs.davidcralph.co.uk/#/leeks?id=usage) for inline usage.
 
 ```js
 log.info('some text', ['#AABBCC', '#123456']);
@@ -72,7 +72,7 @@ log.info('some text', ['#AABBCC', '#123456']);
 
 A number. *You will get an error if you try to put the number in a string.*
 
-See [leeks.js docs](https://docs.davidjcralph.co.uk/#/leeks?id=usage) for inline usage.
+See [leeks.js docs](https://docs.davidcralph.co.uk/#/leeks?id=usage) for inline usage.
 
 ```js
 log.info('some text', [16, 1]);
