@@ -1,4 +1,4 @@
-const Logger = require('../lib');
+const Logger = require('../dist');
 const log = new Logger({
 	name: 'test 3',
 	debug: true,

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	colours: {
 		'&0': 'black',
 		'&1': 'blue',
