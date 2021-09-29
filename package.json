@@ -1,13 +1,16 @@
 {
 	"name": "leekslazylogger",
-	"version": "4.0.0-dev",
-	"description": "An easy-to-use and lightweight Node.JS logger with colours & styles, log files, and timestamps.",
+	"version": "4.0.0",
+	"description": "An easy-to-use and lightweight logger for Node.js with colours, timestamps, and files.",
 	"main": "dist/",
 	"types": "types/index.d.ts",
 	"files": [
 		"dist/",
 		"types/"
 	],
+	"engines": {
+		"node": ">=16"
+	},
 	"scripts": {
 		"build": "del-cli ./dist && tsc",
 		"lint": "eslint src --ext .ts",
@@ -45,7 +48,7 @@
 	"dependencies": {
 		"@eartharoid/deep-merge": "^0.0.2",
 		"@eartharoid/dtf": "^2.0.1",
-		"leeks.js": "^0.2.3"
+		"leeks.js": "^0.2.4"
 	},
 	"devDependencies": {
 		"@types/node": "^16.0.0",
