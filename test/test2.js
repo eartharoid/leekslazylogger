@@ -1,56 +1,22 @@
-const { emojify } = require('node-emoji');
-const Logger = require('../lib');
+const Logger = require('../dist');
+const { FileTransport } = require('../dist/transports');
+
 const log = new Logger({
-	name: 'test 2',
-	debug: true,
-	timestamp: 'DD/MM/YY HH:mm:ss',
-	// splitFile: true,
-	// header: false,
-	levels: {
-		_logger: {
-			format: '&7{timestamp} &0&!f logger &r &f{text}'
-		},
-		basic: {
-			format: '&7{timestamp} &f{text}'
-		},
-		console: {
-			format: emojify('&7{timestamp} &0&!f info &r :information_source: &f{text}')
-		},
-		info: {
-			format: emojify('&7{timestamp} &0&!3 info &r :information_source: &f{text}')
-		},
-		success: {
-			format: emojify('&7{timestamp} &0&!2 success &r :white_check_mark: &f{text}')
-		},
-		debug: {
-			format: emojify('&7{timestamp} &0&!1 debug &r :mute: &f{text}')
-		},
-		notice: {
-			format: emojify('&7{timestamp} &0&!e notice &r :mega: &f{text}')
-		},
-		warn: {
-			format: emojify('&7{timestamp} &0&!6 warn &r :warning: &f{text}')
-		},
-		error: {
-			format: emojify('&7{timestamp} &0&!4 error &r :bangbang: &f{text}')
-		},
-		http: { // a custom one
-			format: emojify('&7{timestamp} &0&!5 http &r :globe_with_meridians: &f{text}')
-		},
-	}
+	transports: [
+		new Logger.transports.ConsoleTransport({
+			format: '[{timestamp}] [{level}]: {content}',
+			level: 'debug',
+			timestamp: 'HH:mm:ss'
+		}),
+		new FileTransport({
+			clean_directory: 0,
+			file: 'YY-MM-DD-HH-mm-ss.log',
+			level: 'warn',
+			name: 'Test 2',
+			new_file: 'run'
+		})
+	]
 });
 
+for (const level in log.options.levels) log[level](`Hello world, I'm ${level}!`);
 
-
-for (let t in log.options.levels) log[t](`Hello world, I'm ${t}!`);
-
-// setInterval(() => {
-// 	log.info('...');
-// }, 1000);
-log.info('test', ['yellow']);
-log.info('important information, %s', 'here', {
-	thing: 'this'
-});
-log.info('... %s', [], ['some', 'text'], {
-	test: 'hello'
-});

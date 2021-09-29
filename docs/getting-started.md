@@ -29,48 +29,40 @@ const Logger = require('leekslazylogger');
 const log = new Logger(options);
 ```
 
-For `options`, see [customisation](/customisation).
+For `options`, see [customisation](/customisation). Omit options to use the defaults.
 
 ## Basic usage
 
-Each [log level](/log-levels) can be used like this:
-
 ```js
-log.<level>(text[, colours[, ...extra]]);
+log[level](...content)
+// or
+log[level][namespace](...content)
 ```
 
-- `text` should be the string you want to log
-- `colours` is an optional array of `[foregroundColour, backgroundColour]`
-- `extra` are optional extras (like `console.log('some %s text', 'awesome', {anObject: true})`)
+### Examples
 
-!!! example "Examples"
-	```js
-	log.console('Hello world');
-
-	log.info('Ready.', ['magentaBright']);
-
-	log.info(Logger.format('Status: &aonline'));
-	```
-
-A list of the default log levels can be found [here](/log-levels). See [customisation](/customisation) for information about custom log levels.
-
-### Colour overrides
-
-If you want to override the colours of a particular line you can do so like this:
+??? summary "Default levels"
+	- `debug`
+	- `verbose`
+	- `info`
+	- `success`
+	- `warn`
+	- `notice`
+	- `error`
+	- `critical`
 
 ```js
-log.info('useful information', [foreground, background]);
+log.info('information', 'more information');
+log.error('oops!', new Error('an error'));
+log.debug('something happened!', { something: ['hello', 'world'] });
 ```
-
-`foreground` and `background` should be a resolvable [colour](/colours-and-styles).
-
-### Inline colours
-
-Use the `Logger.format()` function to colour text using [short codes ("&codes")](/colours-and-styles#short-codes):
 
 ```js
-log.console(Logger.format('&2this is green &4and this is red'));
-```
+// in your options:
+namespaces: ['commands', 'plugins', 'http']
 
-!!! tip
-	You can use `Logger.f()` too.
+// ...
+log.error.commands('an error occurred during command execution')
+log.success.plugins('loaded a plugin')
+log.info.http('received a request from someone')
+```

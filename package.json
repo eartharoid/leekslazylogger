@@ -1,24 +1,26 @@
 {
 	"name": "leekslazylogger",
-	"version": "3.0.2",
-	"description": "An easy-to-use and lightweight Node.JS logger with colours & styles, log files, and timestamps.",
-	"main": "lib/",
-	"types": "lib/index.d.ts",
+	"version": "4.0.0",
+	"description": "An easy-to-use and lightweight logger for Node.js with colours, timestamps, and files.",
+	"main": "dist/",
+	"types": "types/index.d.ts",
 	"files": [
-		"lib/"
+		"dist/",
+		"types/"
 	],
+	"engines": {
+		"node": ">=16"
+	},
 	"scripts": {
+		"build": "del-cli ./dist && tsc",
+		"lint": "eslint src --ext .ts",
+		"lint-and-fix": "eslint src --ext .ts --fix",
 		"test": "node test/test"
 	},
 	"author": {
 		"name": "eartharoid"
 	},
 	"license": "MIT",
-	"dependencies": {
-		"@eartharoid/deep-merge": "^0.0.1",
-		"@eartharoid/dtf": "^1.0.8",
-		"leeks.js": "^0.2.3"
-	},
 	"homepage": "leeks.js.org/logger",
 	"funding": "https://github.com/eartharoid/leekslazylogger?sponsor=1",
 	"repository": {
@@ -29,8 +31,6 @@
 		"url": "https://github.com/eartharoid/leekslazylogger/issues"
 	},
 	"keywords": [
-		"console",
-		"terminal",
 		"log",
 		"logs",
 		"logger",
@@ -41,13 +41,20 @@
 		"colour",
 		"colours",
 		"styles",
-		"formatting",
 		"easy-to-use",
 		"leeks",
 		"leeks.js"
 	],
+	"dependencies": {
+		"@eartharoid/deep-merge": "^0.0.2",
+		"@eartharoid/dtf": "^2.0.1",
+		"leeks.js": "^0.2.4"
+	},
 	"devDependencies": {
-		"eslint": "^7.32.0",
-		"node-emoji": "^1.11.0"
+		"@types/node": "^16.0.0",
+		"@typescript-eslint/eslint-plugin": "^4.28.1",
+		"@typescript-eslint/parser": "^4.28.1",
+		"del-cli": "^4.0.1",
+		"eslint": "^7.32.0"
 	}
 }
