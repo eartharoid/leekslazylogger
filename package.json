@@ -17,7 +17,7 @@
 	"dependencies": {
 		"@eartharoid/deep-merge": "^0.0.1",
 		"@eartharoid/dtf": "^1.0.8",
-		"leeks.js": "^0.2.3"
+		"leeks.js": "^0.2.4"
 	},
 	"homepage": "leeks.js.org/logger",
 	"funding": "https://github.com/eartharoid/leekslazylogger?sponsor=1",
