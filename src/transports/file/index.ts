@@ -19,7 +19,7 @@ const dtf = new DTF('en-GB');
 
 export default class FileTransport extends Transport {
 	public options: CompleteFileTransportOptions;
-	private console;
+	private file;
 	private today;
 	private stream;
 
@@ -37,7 +37,7 @@ export default class FileTransport extends Transport {
 			fs.mkdirSync(resolve(this.options.directory));
 		}
 
-		if (this.options.clean_directory > 0) {
+		if (this.options.clean_directory >= 0) {
 			const one_day = 1000 * 60 * 60 * 24;
 			const files = fs.readdirSync(resolve(this.options.directory)).filter(file => file.endsWith('.log'));
 			const date = Date.now();
@@ -54,12 +54,12 @@ export default class FileTransport extends Transport {
 		const file = typeof this.options.file === 'function' ? this.options.file() : dtf.fill(this.options.file);
 		const path = join(resolve(this.options.directory), file);
 		this.stream = fs.createWriteStream(path, { flags: 'a' }); // 'a' flag to append instead of overwriting
-		this.console = new Console({
+		this.file = new Console({
 			stderr: this.stream,
 			stdout: this.stream
 		});
 		const header = typeof this.options.header === 'function' ? this.options.header.call(this.options) : this.options.header;
-		this.console.log(header);
+		this.file.log(header);
 	}
 
 	write(log: Log): void {
@@ -76,6 +76,6 @@ export default class FileTransport extends Transport {
 				.replace(/{+ ?timestamp ?}+/gmi, typeof this.options.timestamp === 'function'
 					? this.options.timestamp(log.timestamp)
 					: dtf.fill(this.options.timestamp, log.timestamp));
-		this.console[log.level.type](content);
+		this.file[log.level.type](content);
 	}
 }

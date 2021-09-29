@@ -33,7 +33,7 @@ module.exports = class Logger {
 		this._init();
 	}
 
-	_init() {
+	private _init() {
 		this.levels = Object.keys(this._options.levels);
 
 		if (this._options.transports.length < 1) throw new Error('At least one logger transport is required. Remove `transports` from your options to use the defaults.');
@@ -52,7 +52,7 @@ module.exports = class Logger {
 		}
 	}
 
-	log(namespace: string | null, level: LogLevel, ...content: LogContent) {
+	public log(namespace: string | null, level: LogLevel, ...content: LogContent) {
 		const strings = content.map((c: unknown) => typeof c === 'string'
 			? c
 			: c instanceof Error

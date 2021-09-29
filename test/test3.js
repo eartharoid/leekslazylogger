@@ -1,10 +1,16 @@
 const Logger = require('../dist');
+
 const log = new Logger({
-	name: 'test 3',
-	debug: true,
-	header: false,
+	transports: [
+		new Logger.transports.ConsoleTransport({ level: 'debug' })
+	]
 });
 
-for (let t in log.options.levels) log[t](`this is a ${t} log`);
+for (const level in log.options.levels) log[level](`Hello world, I'm ${level}!`);
 
-console.log(Logger.f('&#!000&#16DC3Bhello'));
+log.info('testing', '123');
+log.error('this is an example,', new Error('not a real error!'));
+log.debug('some information', 3, ['Hello', 5], {
+	apollo: { falcon: true },
+	two: 4
+});
