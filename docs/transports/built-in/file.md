@@ -90,6 +90,9 @@ Placeholders:
 - `{timestamp}`
 - `{level}` / `{LEVEL}`
 - `{namespace}` / `{NAMESPACE}`
+- `{file}`
+- `{line}`
+- `{column}`
 - `{content}`
 
 ### Function format
