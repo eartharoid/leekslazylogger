@@ -79,6 +79,6 @@ export default class FileTransport extends Transport {
 				.replace(/{+ ?timestamp ?}+/gmi, typeof this.options.timestamp === 'function'
 					? this.options.timestamp(log.timestamp)
 					: dtf.fill(this.options.timestamp, log.timestamp));
-		this.file[log.level.type](content);
+		this.file[log.level.type](content.replace(/\u001b\[.*?m/g, '')); // eslint-disable-line no-control-regex
 	}
 }
