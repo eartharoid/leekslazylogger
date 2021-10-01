@@ -58,7 +58,6 @@ module.exports = class Logger {
 		const _prepareStackTrace = Error.prepareStackTrace; // eslint-disable-line no-underscore-dangle
 		Error.prepareStackTrace = (_, stack) => stack;
 		const stack = <Array<CallSite> | undefined>new Error().stack;
-		// const stack = (<> new Error().stack).slice(2);
 		Error.prepareStackTrace = _prepareStackTrace;
 		const strings = content.map((c: unknown) => typeof c === 'string'
 			? c
