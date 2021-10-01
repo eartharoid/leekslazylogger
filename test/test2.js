@@ -4,7 +4,7 @@ const { FileTransport } = require('../dist/transports');
 const log = new Logger({
 	transports: [
 		new Logger.transports.ConsoleTransport({
-			format: '[{timestamp}] [{level}]: {content}',
+			format: '[{timestamp}] [{level}] ({file}:{line}:{column}): {content}',
 			level: 'debug',
 			timestamp: 'HH:mm:ss'
 		}),

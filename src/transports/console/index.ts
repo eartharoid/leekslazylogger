@@ -29,6 +29,9 @@ export default class ConsoleTransport extends Transport {
 				.replace(/{+ ?LEVEL ?}+/gm, log.level.name.toUpperCase())
 				.replace(/{+ ?namespace ?}+/gm, log.namespace?.toLowerCase() ?? 'global')
 				.replace(/{+ ?NAMESPACE ?}+/gm, log.namespace?.toUpperCase() ?? 'GLOBAL')
+				.replace(/{+ ?file ?}+/gmi, log.file ?? 'unknown')
+				.replace(/{+ ?line ?}+/gmi, String(log.line) ?? 'unknown')
+				.replace(/{+ ?column ?}+/gmi, String(log.column) ?? 'unknown')
 				.replace(/{+ ?content ?}+/gmi, log.content)
 				.replace(/{+ ?timestamp ?}+/gmi, typeof this.options.timestamp === 'function'
 					? this.options.timestamp(log.timestamp)

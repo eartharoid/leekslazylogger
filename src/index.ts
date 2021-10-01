@@ -9,6 +9,7 @@
 'use strict';
 
 import {
+	CallSite,
 	CompleteLoggerOptions,
 	LogContent,
 	LoggerOptions,
@@ -19,6 +20,7 @@ import {
 import merge from '@eartharoid/deep-merge';
 import defaults from './defaults';
 import { inspect } from 'util';
+import { relative } from 'path';
 import * as transports from './transports';
 
 module.exports = class Logger {
@@ -53,6 +55,11 @@ module.exports = class Logger {
 	}
 
 	public log(namespace: string | null, level: LogLevel, ...content: LogContent) {
+		const _prepareStackTrace = Error.prepareStackTrace; // eslint-disable-line no-underscore-dangle
+		Error.prepareStackTrace = (_, stack) => stack;
+		const stack = <Array<CallSite> | undefined>new Error().stack;
+		// const stack = (<> new Error().stack).slice(2);
+		Error.prepareStackTrace = _prepareStackTrace;
 		const strings = content.map((c: unknown) => typeof c === 'string'
 			? c
 			: c instanceof Error
@@ -64,13 +71,15 @@ module.exports = class Logger {
 		for (const transport of this._options.transports) {
 			if (level.number >= this.levels.indexOf(transport.level)) {
 				transport.write({
+					column: stack ? stack[0]?.getColumnNumber() : null,
 					content: strings.join(' '),
+					file: stack ? stack[0]?.getFileName() ? relative(process.cwd(), <string>stack[0]?.getFileName()) : null : null,
 					level,
+					line: stack ? stack[0]?.getLineNumber() : null,
 					namespace,
 					timestamp: new Date()
 				});
 			}
-
 		}
 	}
 
@@ -79,7 +88,7 @@ module.exports = class Logger {
 	}
 
 	set options(options) {
-		this._options = options;
+		this._options = merge(this._options, options);
 		this._init();
 	}
 };

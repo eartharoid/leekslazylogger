@@ -1,5 +1,21 @@
 import Transport from './transport';
 
+export interface CallSite {
+	getThis(): unknown | undefined;
+	getTypeName(): string | null;
+	getFunction(): (...args: unknown[]) => unknown | undefined;
+	getFunctionName(): string | null;
+	getMethodName(): string | undefined;
+	getFileName(): string | null;
+	getLineNumber(): number | null;
+	getColumnNumber(): number | null;
+	getEvalOrigin(): string | undefined;
+	isToplevel(): boolean;
+	isEval(): boolean;
+	isNative(): boolean;
+	isConstructor(): boolean;
+}
+
 export type LogLevelType = 'debug' | 'info' | 'warn' | 'error';
 
 export interface LogLevel {
@@ -27,8 +43,11 @@ export interface CompleteLoggerOptions {
 export type LogContent = Array<unknown>;
 
 export interface Log {
+	column: number | null,
 	content: string,
+	file: string | null,
 	level: LogLevel,
+	line: number | null,
 	namespace: string | null,
 	timestamp: Date
 }
