@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
-      - run: pnpm ci
+      - run: pnpm i
       - run: pnpm run build
       - run: pnpm test
 
@@ -40,7 +40,7 @@ jobs:
           node-version: '16'
           cache: 'pnpm'
           registry-url: https://registry.npmjs.org/
-      - run: pnpm ci
+      - run: pnpm i
       - run: pnpm run build
       - run: pnpm publish
         env:
