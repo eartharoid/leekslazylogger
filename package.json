@@ -9,7 +9,7 @@
 		"types/"
 	],
 	"engines": {
-		"node": ">=14"
+		"node": ">=12"
 	},
 	"scripts": {
 		"build": "del-cli ./dist && tsc",
