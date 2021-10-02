@@ -12,16 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '14', '16' ]
+        node: [ '12', '14', '16' ]
     name: Node v${{ matrix.node }} test
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
-      - uses: bahmutov/npm-install@v1
-      - run: npm run build
-      - run: npm test
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.6.2
+      - run: pnpm ci
+      - run: pnpm run build
+      - run: pnpm test
 
   publish-npm:
     needs: test
@@ -31,9 +35,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
+          cache: 'pnpm'
           registry-url: https://registry.npmjs.org/
-      - uses: bahmutov/npm-install@v1
-      - run: npm run build
-      - run: npm publish
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.6.2
+      - run: pnpm ci
+      - run: pnpm run build
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

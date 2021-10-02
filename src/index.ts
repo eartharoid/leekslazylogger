@@ -58,6 +58,7 @@ module.exports = class Logger {
 		const _prepareStackTrace = Error.prepareStackTrace; // eslint-disable-line no-underscore-dangle
 		Error.prepareStackTrace = (_, stack) => stack;
 		const stack = <Array<CallSite> | undefined>new Error().stack;
+		const callsite = stack ? stack[2] : null;
 		Error.prepareStackTrace = _prepareStackTrace;
 		const strings = content.map((c: unknown) => typeof c === 'string'
 			? c
@@ -70,11 +71,11 @@ module.exports = class Logger {
 		for (const transport of this._options.transports) {
 			if (level.number >= this.levels.indexOf(transport.level)) {
 				transport.write({
-					column: stack ? stack[0]?.getColumnNumber() : null,
+					column: callsite ? callsite.getColumnNumber() : null,
 					content: strings.join(' '),
-					file: stack ? stack[0]?.getFileName() ? relative(process.cwd(), <string>stack[0]?.getFileName()) : null : null,
+					file: callsite?.getFileName() ? relative(process.cwd(), <string>callsite?.getFileName()) : null,
 					level,
-					line: stack ? stack[0]?.getLineNumber() : null,
+					line: callsite ? callsite.getLineNumber() : null,
 					namespace,
 					timestamp: new Date()
 				});

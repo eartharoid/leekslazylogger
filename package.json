@@ -1,6 +1,6 @@
 {
 	"name": "leekslazylogger",
-	"version": "4.1.1",
+	"version": "4.1.2",
 	"description": "An easy-to-use and lightweight logger for Node.js with colours, timestamps, and files.",
 	"main": "dist/",
 	"types": "types/index.d.ts",
@@ -9,7 +9,7 @@
 		"types/"
 	],
 	"engines": {
-		"node": ">=16"
+		"node": ">=14"
 	},
 	"scripts": {
 		"build": "del-cli ./dist && tsc",
@@ -31,19 +31,22 @@
 		"url": "https://github.com/eartharoid/leekslazylogger/issues"
 	},
 	"keywords": [
-		"log",
-		"logs",
-		"logger",
-		"file",
-		"files",
 		"color",
 		"colors",
 		"colour",
 		"colours",
-		"styles",
+		"console",
+		"customisable",
 		"easy-to-use",
+		"file",
+		"files",
 		"leeks",
-		"leeks.js"
+		"leeks.js",
+		"log",
+		"logger",
+		"logs",
+		"styles",
+		"transports"
 	],
 	"dependencies": {
 		"@eartharoid/deep-merge": "^0.0.2",
