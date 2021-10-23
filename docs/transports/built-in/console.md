@@ -32,11 +32,31 @@ Types:
 
 ```ts
 interface ConsoleTransportOptions {
+	colours?: {
+		[level: string]: string
+	},
 	format?: string | ((this: CompleteConsoleTransportOptions, log: Log) => string),
 	level?: string,
 	timestamp?: string | ((date: Date) => string)
 }
 ```
+
+### `colours`
+
+??? summary "Default"
+	```js
+	colours: {
+		critical: '&!4&0',
+		debug: '&1',
+		error: '&4',
+		info: '&3',
+		notice: '&!6&0',
+		success: '&2',
+		warn: '&6'
+	}
+	```
+Colours used by the default format function.
+
 
 ### `format`
 

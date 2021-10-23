@@ -57,12 +57,18 @@ export interface TransportOptions {
 }
 
 export interface ConsoleTransportOptions {
+	colours?: {
+		[level: string]: string
+	},
 	format?: string | ((this: CompleteConsoleTransportOptions, log: Log) => string),
 	level?: string,
 	timestamp?: string | ((date: Date) => string)
 }
 
 export interface CompleteConsoleTransportOptions {
+	colours: {
+		[level: string]: string
+	},
 	format: string | ((this: CompleteConsoleTransportOptions, log: Log) => string),
 	level: string,
 	timestamp: string | ((date: Date) => string)
