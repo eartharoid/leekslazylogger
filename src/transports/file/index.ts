@@ -27,7 +27,6 @@ export default class FileTransport extends Transport {
 		const merged: CompleteFileTransportOptions = merge(defaults, options);
 		super({ level: merged.level });
 		this.options = merged;
-		this._prepareFile();
 	}
 
 	private _prepareFile() {
