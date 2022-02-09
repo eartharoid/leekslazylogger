@@ -62,6 +62,7 @@ export default class FileTransport extends Transport {
 	}
 
 	write(log: Log): void {
+		if (!this.file) this._prepareFile();
 		if (this.options.new_file.toLowerCase() === 'day' && this.today !== dtf.fill('YYYY-MM-DD')) this._prepareFile();
 
 		const content = typeof this.options.format === 'function'

@@ -22,6 +22,7 @@ import defaults from './defaults';
 import { inspect } from 'util';
 import { relative } from 'path';
 import * as transports from './transports';
+import { format } from 'util';
 
 module.exports = class Logger {
 	public defaults: CompleteLoggerOptions;
@@ -60,19 +61,12 @@ module.exports = class Logger {
 		const stack = <Array<CallSite> | undefined>new Error().stack;
 		const callsite = stack ? stack[2] : null;
 		Error.prepareStackTrace = _prepareStackTrace;
-		const strings = content.map((c: unknown) => typeof c === 'string'
-			? c
-			: c instanceof Error
-				? c.stack
-				: typeof c === 'object'
-					? inspect(c)
-					: String(c));
 
 		for (const transport of this._options.transports) {
 			if (level.number >= this.levels.indexOf(transport.level)) {
 				transport.write({
 					column: callsite ? callsite.getColumnNumber() : null,
-					content: strings.join(' '),
+					content: format(...content),
 					file: callsite?.getFileName() ? relative(process.cwd(), <string>callsite?.getFileName()) : null,
 					level,
 					line: callsite ? callsite.getLineNumber() : null,
