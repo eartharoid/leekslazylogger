@@ -71,7 +71,7 @@ Colours used by the default format function.
 
 Either a string containing placeholders, or a function which returns a string.
 
-### String format
+#### String format
 
 Placeholders:
 
@@ -83,7 +83,7 @@ Placeholders:
 - `{column}`
 - `{content}`
 
-### Function format
+#### Function format
 
 To access the transport options (eg. `timestamp`) from within the function, use a classic function (not an ES6 arrow function) so `this` is the options object. The function is passed one argument, the `Log` object.
 
@@ -97,7 +97,7 @@ To access the transport options (eg. `timestamp`) from within the function, use 
 	}
 	```
 
-## `level`
+### `level`
 
 ??? summary "Default"
 	```js
@@ -106,7 +106,7 @@ To access the transport options (eg. `timestamp`) from within the function, use 
 
 The name of the minimum log level that this transport will receive.
 
-## `timestamp`
+### `timestamp`
 
 ??? summary "Default"
 	```js

@@ -83,7 +83,7 @@ A string or a function that returns a string - the filename.
 
 Either a string containing placeholders, or a function which returns a string.
 
-### String format
+#### String format
 
 Placeholders:
 
@@ -95,7 +95,7 @@ Placeholders:
 - `{column}`
 - `{content}`
 
-### Function format
+#### Function format
 
 To access the transport options (eg. `timestamp`) from within the function, use a classic function (not an ES6 arrow function) so `this` is the options object. The function is passed one argument, the `Log` object.
 
@@ -124,7 +124,7 @@ A function which returns a string; inserted at the start of log files (or at sta
 To access the transport options (eg. `timestamp`) from within the function, use a classic function (not an ES6 arrow function) so `this` is the options object.
 Return an empty string to disable.
 
-## `level`
+### `level`
 
 ??? summary "Default"
 	```js
@@ -133,7 +133,7 @@ Return an empty string to disable.
 
 The name of the minimum log level that this transport will receive.
 
-## `name`
+### `name`
 
 ??? summary "Default"
 	```js
@@ -142,7 +142,7 @@ The name of the minimum log level that this transport will receive.
 
 A string used in the default `header` format.
 
-## `new_file`
+### `new_file`
 
 ??? summary "Default"
 	```js
@@ -153,7 +153,7 @@ Either `'day'` or `'run'` to create a new file every day or every time the progr
 
 A string used in the default `header` format.
 
-## `timestamp`
+### `timestamp`
 
 ??? summary "Default"
 	```js
