@@ -1,6 +1,6 @@
 import {
 	CompleteConsoleTransportOptions,
-	ConsoleTransportOptions,
+	PartialConsoleTransportOptions,
 	Log
 } from '../../types';
 
@@ -15,7 +15,7 @@ const dtf = new DTF('en-GB');
 export default class ConsoleTransport extends Transport {
 	public options: CompleteConsoleTransportOptions;
 
-	constructor(options: ConsoleTransportOptions = {}) {
+	constructor(options: PartialConsoleTransportOptions = {}) {
 		const merged: CompleteConsoleTransportOptions = merge(defaults, options);
 		super({ level: merged.level });
 		this.options = merged;

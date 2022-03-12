@@ -23,7 +23,7 @@ const defaults: CompleteFileTransportOptions = {
 	level: 'info',
 	name: 'A leekslazylogger project',
 	new_file: 'day',
-	timestamp: 'DD/MM/YY HH:mm:ss'
+	timestamp: 'DD/MM/YY HH:mm:ss',
 };
 
 export default defaults;

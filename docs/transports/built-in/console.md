@@ -31,7 +31,7 @@ const log = new Logger({
 Types:
 
 ```ts
-interface ConsoleTransportOptions {
+interface PartialConsoleTransportOptions {
 	colours?: {
 		[level: string]: string
 	},

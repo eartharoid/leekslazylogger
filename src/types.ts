@@ -24,7 +24,7 @@ export interface LogLevel {
 	type: LogLevelType
 }
 
-export interface LoggerOptions {
+export interface PartialLoggerOptions {
 	levels?: {
 		[name: string]: string
 	},
@@ -56,7 +56,7 @@ export interface TransportOptions {
 	level: string,
 }
 
-export interface ConsoleTransportOptions {
+export interface PartialConsoleTransportOptions {
 	colours?: {
 		[level: string]: string
 	},
@@ -74,7 +74,7 @@ export interface CompleteConsoleTransportOptions {
 	timestamp: string | ((date: Date) => string)
 }
 
-export interface FileTransportOptions {
+export interface PartialFileTransportOptions {
 	clean_directory?: number
 	directory?: string
 	file?: string | (() => string),

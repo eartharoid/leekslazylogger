@@ -12,24 +12,24 @@ import {
 	CallSite,
 	CompleteLoggerOptions,
 	LogContent,
-	LoggerOptions,
+	PartialLoggerOptions,
 	LogLevel,
 	LogLevelType
 } from './types';
 
 import merge from '@eartharoid/deep-merge';
 import defaults from './defaults';
-import { inspect } from 'util';
 import { relative } from 'path';
-import * as transports from './transports';
+import ConsoleTransport from './transports/console';
+import FileTransport from './transports/file';
 import { format } from 'util';
 
-module.exports = class Logger {
+export default class Logger {
 	public defaults: CompleteLoggerOptions;
 	private _options: CompleteLoggerOptions;
 	public levels: Array<string>;
 
-	constructor(options: LoggerOptions = {}) {
+	constructor(options: PartialLoggerOptions = {}) {
 		this.defaults = defaults;
 		this._options = merge(this.defaults, options);
 		this.levels = Object.keys(this._options.levels);
@@ -45,7 +45,7 @@ module.exports = class Logger {
 			const log_level: LogLevel = {
 				name: level,
 				number: this.levels.indexOf(level),
-				type: <LogLevelType>this._options.levels[level]
+				type: <LogLevelType>this._options.levels[level],
 			};
 			this[level] = (...content: LogContent) => this.log(null, log_level, ...content);
 
@@ -55,7 +55,7 @@ module.exports = class Logger {
 		}
 	}
 
-	public log(namespace: string | null, level: LogLevel, ...content: LogContent) {
+	public log(namespace: string | null, level: LogLevel, ...content: LogContent): void {
 		const _prepareStackTrace = Error.prepareStackTrace; // eslint-disable-line no-underscore-dangle
 		Error.prepareStackTrace = (_, stack) => stack;
 		const stack = <Array<CallSite> | undefined>new Error().stack;
@@ -71,20 +71,25 @@ module.exports = class Logger {
 					level,
 					line: callsite ? callsite.getLineNumber() : null,
 					namespace,
-					timestamp: new Date()
+					timestamp: new Date(),
 				});
 			}
 		}
 	}
 
-	get options() {
+	get options(): CompleteLoggerOptions {
 		return this._options;
 	}
 
-	set options(options) {
+	set options(options: PartialLoggerOptions) {
 		this._options = merge(this._options, options);
 		this._init();
 	}
-};
 
-module.exports.transports = transports;
+	static get transports() {
+		return {
+			ConsoleTransport,
+			FileTransport,
+		};
+	}
+}

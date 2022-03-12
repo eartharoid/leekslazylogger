@@ -1,10 +1,4 @@
-const Logger = require('../dist');
-/*
- * const {
- * 	ConsoleTransport,
- * 	FileTransport
- * } = require('../dist/transports');
- */
+import Logger from '../dist';
 
 const log = new Logger({ namespaces: ['http'] });
 

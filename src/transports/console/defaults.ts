@@ -15,7 +15,7 @@ const defaults: CompleteConsoleTransportOptions = {
 		info: '&3',
 		notice: '&!6&0',
 		success: '&2',
-		warn: '&6'
+		warn: '&6',
 	},
 	format: function (this: CompleteConsoleTransportOptions, log: Log): string {
 		const timestamp = typeof this.timestamp === 'function' ? this.timestamp(log.timestamp) : dtf.fill(this.timestamp, log.timestamp);
@@ -23,7 +23,7 @@ const defaults: CompleteConsoleTransportOptions = {
 		return short(`${colour}[${timestamp}] [${log.level.name.toUpperCase()}] ${log.namespace ? `(${log.namespace.toUpperCase()}) ` : ''}${log.content}`);
 	},
 	level: 'info',
-	timestamp: 'DD/MM/YY HH:mm:ss'
+	timestamp: 'DD/MM/YY HH:mm:ss',
 };
 
 export default defaults;

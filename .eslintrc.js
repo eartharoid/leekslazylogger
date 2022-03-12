@@ -3,7 +3,7 @@ module.exports = {
 		'browser': true,
 		'commonjs': false,
 		'es6': true,
-		'node': true
+		'node': true,
 	},
 	'extends': [
 		'eslint:recommended',
@@ -48,13 +48,19 @@ module.exports = {
 		],
 		'comma-dangle': [
 			'error',
-			'never'
+			{
+				'arrays': 'never',
+				'exports': 'never',
+				'functions': 'never',
+				'imports': 'never',
+				'objects': 'always-multiline',
+			}
 		],
 		'comma-spacing': [
 			'error',
 			{
 				'after': true,
-				'before': false
+				'before': false,
 			}
 		],
 		'comma-style': [
@@ -107,7 +113,7 @@ module.exports = {
 				'ignoreStrings': true,
 				'ignoreTemplateLiterals': true,
 				'ignoreTrailingComments': true,
-				'ignoreUrls': true
+				'ignoreUrls': true,
 			}
 		],
 		'max-lines': [
@@ -134,7 +140,7 @@ module.exports = {
 		'no-underscore-dangle': [
 			'error', {
 				'allowAfterThis': true,
-				'allowFunctionParams': true
+				'allowFunctionParams': true,
 			}
 		],
 		'no-unneeded-ternary': [
@@ -150,7 +156,7 @@ module.exports = {
 			'error',
 			{
 				'minProperties': 2,
-				'multiline': true
+				'multiline': true,
 			}
 		],
 		'object-curly-spacing': [
@@ -170,7 +176,7 @@ module.exports = {
 			'error',
 			{
 				'destructuring': 'all',
-				'ignoreReadBeforeAssign': false
+				'ignoreReadBeforeAssign': false,
 			}
 		],
 		'quotes': [
@@ -197,6 +203,6 @@ module.exports = {
 		'spaced-comment': [
 			'error',
 			'always'
-		]
-	}
+		],
+	},
 };

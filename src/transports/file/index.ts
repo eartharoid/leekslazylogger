@@ -1,6 +1,6 @@
 import {
 	CompleteFileTransportOptions,
-	FileTransportOptions,
+	PartialFileTransportOptions,
 	Log
 } from '../../types';
 
@@ -23,7 +23,7 @@ export default class FileTransport extends Transport {
 	private today;
 	private stream;
 
-	constructor(options: FileTransportOptions = {}) {
+	constructor(options: PartialFileTransportOptions = {}) {
 		const merged: CompleteFileTransportOptions = merge(defaults, options);
 		super({ level: merged.level });
 		this.options = merged;
@@ -55,7 +55,7 @@ export default class FileTransport extends Transport {
 		this.stream = fs.createWriteStream(path, { flags: 'a' }); // 'a' flag to append instead of overwriting
 		this.file = new Console({
 			stderr: this.stream,
-			stdout: this.stream
+			stdout: this.stream,
 		});
 		const header = typeof this.options.header === 'function' ? this.options.header.call(this.options) : this.options.header;
 		this.file.log(header);

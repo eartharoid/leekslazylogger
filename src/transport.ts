@@ -1,12 +1,12 @@
 import {
 	Log,
-	LoggerOptions,
+	PartialLoggerOptions,
 	TransportOptions
 } from './types';
 
 export default abstract class Transport {
 	public level: string;
-	public logger: LoggerOptions | undefined;
+	public logger: PartialLoggerOptions | undefined;
 
 	constructor(options: TransportOptions) {
 		this.level = options.level;

@@ -31,7 +31,7 @@ const log = new Logger({
 Types:
 
 ```ts
-interface FileTransportOptions {
+interface PartialFileTransportOptions {
 	clean_directory?: number
 	directory?: string
 	file?: string | (() => string),

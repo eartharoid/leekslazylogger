@@ -16,13 +16,13 @@ const defaults: CompleteLoggerOptions = {
 		warn: 'warn',
 		notice: 'warn',
 		error: 'error',
-		critical: 'error'
+		critical: 'error',
 	},
 	namespaces: [],
 	transports: [
 		new ConsoleTransport(),
 		new FileTransport()
-	]
+	],
 };
 export default defaults;
 
