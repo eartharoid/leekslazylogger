@@ -36,10 +36,3 @@ declare module 'leekslazylogger' {
 		};
 	}
 }
-
-declare module 'leekslazylogger/dist/transports' {
-	export {
-		ConsoleTransport,
-		FileTransport
-	};
-}
