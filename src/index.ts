@@ -20,11 +20,10 @@ import {
 import merge from '@eartharoid/deep-merge';
 import defaults from './defaults';
 import { relative } from 'path';
-import ConsoleTransport from './transports/console';
-import FileTransport from './transports/file';
+import * as transports from './transports';
 import { format } from 'util';
 
-export default class Logger {
+module.exports = class Logger {
 	public defaults: CompleteLoggerOptions;
 	private _options: CompleteLoggerOptions;
 	public levels: Array<string>;
@@ -55,7 +54,7 @@ export default class Logger {
 		}
 	}
 
-	public log(namespace: string | null, level: LogLevel, ...content: LogContent): void {
+	public log(namespace: string | null, level: LogLevel, ...content: LogContent) {
 		const _prepareStackTrace = Error.prepareStackTrace; // eslint-disable-line no-underscore-dangle
 		Error.prepareStackTrace = (_, stack) => stack;
 		const stack = <Array<CallSite> | undefined>new Error().stack;
@@ -77,19 +76,14 @@ export default class Logger {
 		}
 	}
 
-	get options(): CompleteLoggerOptions {
+	get options() {
 		return this._options;
 	}
 
-	set options(options: PartialLoggerOptions) {
+	set options(options) {
 		this._options = merge(this._options, options);
 		this._init();
 	}
+};
 
-	static get transports() {
-		return {
-			ConsoleTransport,
-			FileTransport,
-		};
-	}
-}
+module.exports.transports = transports;
