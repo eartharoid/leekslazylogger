@@ -4,7 +4,7 @@
 ![Tests](https://img.shields.io/github/workflow/status/eartharoid/deep-merge/Test?label=Test&logo=github&style=flat-square)
 [![License](https://img.shields.io/github/license/eartharoid/leekslazylogger?style=flat-square)](https://github.com/eartharoid/leekslazylogger/blob/master/LICENSE)
 ![Codacy grade](https://img.shields.io/codacy/grade/15dc38c312c3430d8ed02c58edb2e8bd?logo=codacy&style=flat-square)
-[![Discord support server](https://discordapp.com/api/guilds/451745464480432129/embed.png?style=shield)](https://discord.gg/pXc9vyC)
+[![Discord support server](https://discordapp.com/api/guilds/451745464480432129/embed.png?style=shield)](https://lnk.earth/discord)
 
 ## About
 
@@ -44,9 +44,9 @@ For installation and usage instructions/examples, see [Getting Started](https://
 
 ## Support
 
-**[Go to the docs](https://logger.eartharoid.me)**, or ask for help in [#general-support](https://discordapp.com/channels/451745464480432129/475351519516950548) on [Discord](https://discord.gg/pXc9vyC).
+**[Go to the docs](https://logger.eartharoid.me)**, or ask for help in [#general-support](https://discordapp.com/channels/451745464480432129/475351519516950548) on [Discord](https://lnk.earth/discord).
 
-[![Discord](https://discordapp.com/api/guilds/451745464480432129/widget.png?style=banner4)](https://discord.gg/pXc9vyC)
+[![Discord](https://discordapp.com/api/guilds/451745464480432129/widget.png?style=banner4)](https://lnk.earth/discord)
 
 ## Donate
 
