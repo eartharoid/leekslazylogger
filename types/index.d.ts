@@ -1,25 +1,20 @@
 import {
-	CompleteLoggerOptions,
 	LogContent,
 	LogLevel,
-	PartialLoggerOptions
+	LoggerOptions,
+	Partial
 } from '../src/types';
 
-import {
-	ConsoleTransport,
-	FileTransport
-} from '../src/transports';
-
 declare module 'leekslazylogger' {
-	export default class Logger {
-		public defaults: CompleteLoggerOptions;
+	export class Logger {
+		public defaults: LoggerOptions;
 		public levels: Array<string>;
 
-		constructor(options?: PartialLoggerOptions);
+		constructor(options?: Partial<LoggerOptions>);
 
 		public log(namespace: string | null, level: LogLevel, ...content: LogContent): void;
-		public get options(): PartialLoggerOptions;
-		public set options(options: PartialLoggerOptions);
+		public get options(): Partial<LoggerOptions>;
+		public set options(options: Partial<LoggerOptions>);
 
 		public debug(...content: LogContent): void;
 		public verbose(...content: LogContent): void;
@@ -29,10 +24,5 @@ declare module 'leekslazylogger' {
 		public notice(...content: LogContent): void;
 		public error(...content: LogContent): void;
 		public critical(...content: LogContent): void;
-
-		static get transports(): {
-			ConsoleTransport: ConsoleTransport,
-			FileTransport: FileTransport
-		};
 	}
 }

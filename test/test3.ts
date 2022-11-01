@@ -1,8 +1,11 @@
-import Logger from '../dist';
+import {
+	ConsoleTransport,
+	Logger
+} from '../dist';
 
 const log = new Logger({
 	transports: [
-		new Logger.transports.ConsoleTransport({ level: 'debug' })
+		new ConsoleTransport({ level: 'debug' })
 	],
 });
 

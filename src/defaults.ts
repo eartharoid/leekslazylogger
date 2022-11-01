@@ -1,13 +1,11 @@
 /* eslint-disable sort-keys */
 
-import { CompleteLoggerOptions } from './types';
+import { LoggerOptions } from './types';
 
-import {
-	ConsoleTransport,
-	FileTransport
-} from './transports';
+import ConsoleTransport from './transports/console';
+import FileTransport from './transports/file';
 
-const defaults: CompleteLoggerOptions = {
+const defaults: LoggerOptions = {
 	levels: {
 		debug: 'info',
 		verbose: 'info',

@@ -1,4 +1,4 @@
-import Logger from '../dist';
+import { Logger } from '../dist';
 
 const log = new Logger({ namespaces: ['http'] });
 

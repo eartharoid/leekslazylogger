@@ -1,10 +1,10 @@
 import {
-	CompleteConsoleTransportOptions,
-	PartialConsoleTransportOptions,
-	Log
+	ConsoleTransportOptions,
+	Log,
+	Partial
 } from '../../types';
 
-import Transport from '../../transport';
+import Transport from '../../Transport';
 import merge from '@eartharoid/deep-merge';
 import defaults from './defaults';
 import DTF from '@eartharoid/dtf';
@@ -13,10 +13,10 @@ import { short } from 'leeks.js';
 const dtf = new DTF('en-GB');
 
 export default class ConsoleTransport extends Transport {
-	public options: CompleteConsoleTransportOptions;
+	public options: ConsoleTransportOptions;
 
-	constructor(options: PartialConsoleTransportOptions = {}) {
-		const merged: CompleteConsoleTransportOptions = merge(defaults, options);
+	constructor(options: Partial<ConsoleTransportOptions> = {}) {
+		const merged: ConsoleTransportOptions = merge(defaults, options);
 		super({ level: merged.level });
 		this.options = merged;
 	}

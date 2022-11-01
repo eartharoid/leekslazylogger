@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@eartharoid/deep-merge': ^0.0.2
@@ -20,11 +20,11 @@ dependencies:
 
 devDependencies:
   '@types/node': 16.10.2
-  '@typescript-eslint/eslint-plugin': 4.32.0_7e4e649ab384e855d5a7161bdee9d7e0
-  '@typescript-eslint/parser': 4.32.0_eslint@7.32.0+typescript@4.5.5
+  '@typescript-eslint/eslint-plugin': 4.32.0_pzhgjgvtqtuflvnhcyn552ox4a
+  '@typescript-eslint/parser': 4.32.0_sgaiclxgc5mltnpgmg7py4v6ca
   del-cli: 4.0.1
   eslint: 7.32.0
-  ts-node: 10.7.0_c2f14c4591ed90695667bd9e46c8f14e
+  ts-node: 10.7.0_ylyuyrmr5wigsvthxwpenshrjy
   tsc-watch: 4.6.2_typescript@4.5.5
   typescript: 4.5.5
 
@@ -162,7 +162,7 @@ packages:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
 
-  /@typescript-eslint/eslint-plugin/4.32.0_7e4e649ab384e855d5a7161bdee9d7e0:
+  /@typescript-eslint/eslint-plugin/4.32.0_pzhgjgvtqtuflvnhcyn552ox4a:
     resolution: {integrity: sha512-+OWTuWRSbWI1KDK8iEyG/6uK2rTm3kpS38wuVifGUTDB6kjEuNrzBI1MUtxnkneuWG/23QehABe2zHHrj+4yuA==}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
@@ -173,8 +173,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/experimental-utils': 4.32.0_eslint@7.32.0+typescript@4.5.5
-      '@typescript-eslint/parser': 4.32.0_eslint@7.32.0+typescript@4.5.5
+      '@typescript-eslint/experimental-utils': 4.32.0_sgaiclxgc5mltnpgmg7py4v6ca
+      '@typescript-eslint/parser': 4.32.0_sgaiclxgc5mltnpgmg7py4v6ca
       '@typescript-eslint/scope-manager': 4.32.0
       debug: 4.3.2
       eslint: 7.32.0
@@ -188,7 +188,7 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/experimental-utils/4.32.0_eslint@7.32.0+typescript@4.5.5:
+  /@typescript-eslint/experimental-utils/4.32.0_sgaiclxgc5mltnpgmg7py4v6ca:
     resolution: {integrity: sha512-WLoXcc+cQufxRYjTWr4kFt0DyEv6hDgSaFqYhIzQZ05cF+kXfqXdUh+//kgquPJVUBbL3oQGKQxwPbLxHRqm6A==}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
@@ -206,7 +206,7 @@ packages:
       - typescript
     dev: true
 
-  /@typescript-eslint/parser/4.32.0_eslint@7.32.0+typescript@4.5.5:
+  /@typescript-eslint/parser/4.32.0_sgaiclxgc5mltnpgmg7py4v6ca:
     resolution: {integrity: sha512-lhtYqQ2iEPV5JqV7K+uOVlPePjClj4dOw7K4/Z1F2yvjIUvyr13yJnDzkK6uon4BjHYuHy3EG0c2Z9jEhFk56w==}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
@@ -1453,7 +1453,7 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /ts-node/10.7.0_c2f14c4591ed90695667bd9e46c8f14e:
+  /ts-node/10.7.0_ylyuyrmr5wigsvthxwpenshrjy:
     resolution: {integrity: sha512-TbIGS4xgJoX2i3do417KSaep1uRAW/Lu+WAL2doDHC0D6ummjirVOXU5/7aiZotbQ5p1Zp9tP7U6cYhA0O7M8A==}
     hasBin: true
     peerDependencies:

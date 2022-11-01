@@ -1,10 +1,10 @@
 import {
-	CompleteFileTransportOptions,
-	PartialFileTransportOptions,
-	Log
+	FileTransportOptions,
+	Log,
+	Partial
 } from '../../types';
 
-import Transport from '../../transport';
+import Transport from '../../Transport';
 import merge from '@eartharoid/deep-merge';
 import defaults from './defaults';
 import { Console } from 'console';
@@ -18,13 +18,13 @@ import {
 const dtf = new DTF('en-GB');
 
 export default class FileTransport extends Transport {
-	public options: CompleteFileTransportOptions;
+	public options: FileTransportOptions;
 	private file;
 	private today;
 	private stream;
 
-	constructor(options: PartialFileTransportOptions = {}) {
-		const merged: CompleteFileTransportOptions = merge(defaults, options);
+	constructor(options: Partial<FileTransportOptions> = {}) {
+		const merged: FileTransportOptions = merge(defaults, options);
 		super({ level: merged.level });
 		this.options = merged;
 	}

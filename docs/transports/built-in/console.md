@@ -31,11 +31,11 @@ const log = new Logger({
 Types:
 
 ```ts
-interface PartialConsoleTransportOptions {
+interface Partial<ConsoleTransportOptions> {
 	colours?: {
 		[level: string]: string
 	},
-	format?: string | ((this: CompleteConsoleTransportOptions, log: Log) => string),
+	format?: string | ((this: ConsoleTransportOptions, log: Log) => string),
 	level?: string,
 	timestamp?: string | ((date: Date) => string)
 }
@@ -62,7 +62,7 @@ Colours used by the default format function.
 
 ??? summary "Default"
 	```js
-	format: function (this: CompleteConsoleTransportOptions, log: Log): string {
+	format: function (this: ConsoleTransportOptions, log: Log): string {
 		const timestamp = typeof this.timestamp === 'function' ? this.timestamp(log.timestamp) : dtf.fill(this.timestamp, log.timestamp);
 		const colour = colours[log.level.name] ?? '';
 		return short(`${colour}[${timestamp}] [${log.level.name.toUpperCase()}] ${log.namespace ? `(${log.namespace.toUpperCase()}) ` : ''}${log.content}`);

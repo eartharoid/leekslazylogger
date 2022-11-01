@@ -1,4 +1,4 @@
-import Transport from './transport';
+import Transport from './Transport';
 
 export interface CallSite {
 	getThis(): unknown | undefined;
@@ -16,31 +16,26 @@ export interface CallSite {
 	isConstructor(): boolean;
 }
 
-export type LogLevelType = 'debug' | 'info' | 'warn' | 'error';
+export interface ConsoleTransportOptions {
+	colours: {
+		[level: string]: string
+	},
+	format: string | ((this: ConsoleTransportOptions, log: Log) => string),
+	level: string,
+	timestamp: string | ((date: Date) => string)
+}
 
-export interface LogLevel {
+export interface FileTransportOptions {
+	clean_directory: number
+	directory: string
+	file: string | (() => string),
+	format: string | ((this: FileTransportOptions, log: Log) => string),
+	header: string | ((this: FileTransportOptions) => string),
+	level: string,
 	name: string,
-	number: number,
-	type: LogLevelType
+	new_file: 'day' | 'run',
+	timestamp: string | ((date: Date) => string)
 }
-
-export interface PartialLoggerOptions {
-	levels?: {
-		[name: string]: string
-	},
-	namespaces?: Array<string>,
-	transports?: Array<Transport>
-}
-
-export interface CompleteLoggerOptions {
-	levels: {
-		[name: string]: string
-	},
-	namespaces: Array<string>,
-	transports: Array<Transport>
-}
-
-export type LogContent = Array<unknown>;
 
 export interface Log {
 	column: number | null,
@@ -52,48 +47,28 @@ export interface Log {
 	timestamp: Date
 }
 
+export type LogContent = Array<unknown>;
+
+export interface LogLevel {
+	name: string,
+	number: number,
+	type: LogLevelType
+}
+
+export type LogLevelType = 'debug' | 'info' | 'warn' | 'error';
+
+export interface LoggerOptions {
+	levels: {
+		[name: string]: string
+	},
+	namespaces: Array<string>,
+	transports: Array<Transport>
+}
+
+export type Partial<T> = {
+	[P in keyof T]?: T[P];
+};
+
 export interface TransportOptions {
 	level: string,
-}
-
-export interface PartialConsoleTransportOptions {
-	colours?: {
-		[level: string]: string
-	},
-	format?: string | ((this: CompleteConsoleTransportOptions, log: Log) => string),
-	level?: string,
-	timestamp?: string | ((date: Date) => string)
-}
-
-export interface CompleteConsoleTransportOptions {
-	colours: {
-		[level: string]: string
-	},
-	format: string | ((this: CompleteConsoleTransportOptions, log: Log) => string),
-	level: string,
-	timestamp: string | ((date: Date) => string)
-}
-
-export interface PartialFileTransportOptions {
-	clean_directory?: number
-	directory?: string
-	file?: string | (() => string),
-	format?: string | ((this: CompleteFileTransportOptions, log: Log) => string),
-	header?: string | ((this: CompleteFileTransportOptions) => string),
-	level?: string,
-	name?: string,
-	new_file?: 'day' | 'run',
-	timestamp?: string | ((date: Date) => string)
-}
-
-export interface CompleteFileTransportOptions {
-	clean_directory: number
-	directory: string
-	file: string | (() => string),
-	format: string | ((this: CompleteFileTransportOptions, log: Log) => string),
-	header: string | ((this: CompleteFileTransportOptions) => string),
-	level: string,
-	name: string,
-	new_file: 'day' | 'run',
-	timestamp: string | ((date: Date) => string)
 }

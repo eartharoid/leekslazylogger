@@ -9,7 +9,7 @@
 Types:
 
 ```ts
-interface PartialLoggerOptions {
+interface Partial<LoggerOptions> {
 	levels?: {
 		[name: string]: string
 	},

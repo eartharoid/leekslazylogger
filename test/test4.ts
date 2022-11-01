@@ -1,9 +1,13 @@
-import Logger from '../dist';
+import {
+	ConsoleTransport,
+	FileTransport,
+	Logger
+} from '../dist';
 
 const log = new Logger({
 	transports: [
-		new Logger.transports.ConsoleTransport(),
-		new Logger.transports.FileTransport({
+		new ConsoleTransport(),
+		new FileTransport({
 			clean_directory: 0,
 			name: 'Test 4',
 		})
