@@ -25,7 +25,7 @@ Install with:
 And require it in your code:
 
 ```js
-const Logger = require('leekslazylogger');
+const { Logger } = require('leekslazylogger');
 const log = new Logger(options);
 ```
 
