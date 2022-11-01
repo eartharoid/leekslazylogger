@@ -15,6 +15,7 @@
 		"build": "del-cli ./dist && tsc",
 		"lint": "eslint src --ext .ts",
 		"lint-and-fix": "eslint src --ext .ts --fix",
+		"prepack": "npm run build",
 		"test": "npx ts-node test/test",
 		"watch": "npx tsc-watch --onSuccess \"npm run test\""
 	},
