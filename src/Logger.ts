@@ -74,3 +74,16 @@ export default class Logger {
 		this._init();
 	}
 }
+
+declare module '.' {
+	interface Logger {
+		debug(...content: LogContent): void;
+		verbose(...content: LogContent): void;
+		info(...content: LogContent): void;
+		success(...content: LogContent): void;
+		warn(...content: LogContent): void;
+		notice(...content: LogContent): void;
+		error(...content: LogContent): void;
+		critical(...content: LogContent): void;
+	}
+}
