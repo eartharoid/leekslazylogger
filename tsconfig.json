@@ -12,7 +12,10 @@
 		"removeComments": false,
 		"moduleResolution": "node",
 		"types": ["node"],
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"declaration": true,
+		"declarationMap": true,
+		"declarationDir": "./types"
 	},
-	"include": ["src/**/*", "types/index.d.ts"]
+	"include": ["src/**/*"]
 }
