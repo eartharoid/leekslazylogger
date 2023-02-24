@@ -8,7 +8,7 @@ specifiers:
   '@typescript-eslint/parser': ^4.28.1
   del-cli: ^4.0.1
   eslint: ^7.32.0
-  leeks.js: ^0.2.4
+  leeks.js: ^0.3.0
   ts-node: ^10.7.0
   tsc-watch: ^4.6.2
   typescript: ^4.5.5
@@ -16,7 +16,7 @@ specifiers:
 dependencies:
   '@eartharoid/deep-merge': 0.0.2
   '@eartharoid/dtf': 2.0.1
-  leeks.js: 0.2.4
+  leeks.js: 0.3.0
 
 devDependencies:
   '@types/node': 16.10.2
@@ -990,8 +990,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /leeks.js/0.2.4:
-    resolution: {integrity: sha512-yFR6BtcTA/5s2FJAVkPn2VEzqO76DqBIdkC+1vNyersz1Hw0DxhunRu7bI7/XKxwrNy8x0K4e1p4YQKIGRCBww==}
+  /leeks.js/0.3.0:
+    resolution: {integrity: sha512-6viaW7OYf8ijUe3G+rQ6CvbCLkN32vmeaEnVg82M474MbEeB++FcA80Qya1lv3cCgwkuxnfzDgnmWxol1bfhfA==}
     dev: false
 
   /levn/0.4.1:

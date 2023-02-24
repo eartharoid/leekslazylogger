@@ -53,7 +53,7 @@
 	"dependencies": {
 		"@eartharoid/deep-merge": "^0.0.2",
 		"@eartharoid/dtf": "^2.0.1",
-		"leeks.js": "^0.2.4"
+		"leeks.js": "^0.3.0"
 	},
 	"devDependencies": {
 		"@types/node": "^16.10.2",
