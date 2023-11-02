@@ -49,6 +49,11 @@ export interface Log {
 
 export type LogContent = Array<unknown>;
 
+export type LogFunction = {
+	(...content: LogContent): void;
+	[namespace: string]: (...content: LogContent) => void;
+};
+
 export interface LogLevel {
 	name: string,
 	number: number,

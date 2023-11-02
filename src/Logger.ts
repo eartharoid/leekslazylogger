@@ -2,6 +2,7 @@ import {
 	CallSite,
 	LoggerOptions,
 	LogContent,
+	LogFunction,
 	LogLevel,
 	LogLevelType,
 	Partial
@@ -77,13 +78,13 @@ export default class Logger {
 
 declare module '.' {
 	interface Logger {
-		debug(...content: LogContent): void;
-		verbose(...content: LogContent): void;
-		info(...content: LogContent): void;
-		success(...content: LogContent): void;
-		warn(...content: LogContent): void;
-		notice(...content: LogContent): void;
-		error(...content: LogContent): void;
-		critical(...content: LogContent): void;
+		debug: LogFunction
+		verbose: LogFunction;
+		info: LogFunction;
+		success: LogFunction;
+		warn: LogFunction;
+		notice: LogFunction;
+		error: LogFunction;
+		critical: LogFunction;
 	}
 }

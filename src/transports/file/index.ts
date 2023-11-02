@@ -19,9 +19,9 @@ const dtf = new DTF('en-GB');
 
 export default class FileTransport extends Transport {
 	public options: FileTransportOptions;
-	private file;
-	private today;
-	private stream;
+	private file: Console | undefined;
+	private today: string | undefined;
+	private stream: fs.WriteStream | undefined;
 
 	constructor(options: Partial<FileTransportOptions> = {}) {
 		const merged: FileTransportOptions = merge(defaults, options);
@@ -79,6 +79,7 @@ export default class FileTransport extends Transport {
 				.replace(/{+ ?timestamp ?}+/gmi, typeof this.options.timestamp === 'function'
 					? this.options.timestamp(log.timestamp)
 					: dtf.fill(this.options.timestamp, log.timestamp));
-		this.file[log.level.type](content.replace(/\u001b\[.*?m/g, '')); // eslint-disable-line no-control-regex
+		// escape ANSI formatting
+		(<Console>this.file)[log.level.type](content.replace(/\u001b\[.*?m/g, '')); // eslint-disable-line no-control-regex
 	}
 }
