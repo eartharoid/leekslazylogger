@@ -44,6 +44,50 @@ export default class Logger {
 		}
 	}
 
+	public addNamespace(namespace: string): void {
+		if (typeof this.info[namespace] !== 'undefined') return;
+		for (const level in this._options.levels) {
+			const log_level: LogLevel = {
+				name: level,
+				number: this.levels.indexOf(level),
+				type: <LogLevelType>this._options.levels[level],
+			};
+
+			this[level][namespace] = (...content: LogContent) => this.log(namespace, log_level, ...content);
+		}
+	}
+
+	public addNamespaces(namespaces: string[]): void {
+		for (const namespace of namespaces) {
+			if (typeof this.info[namespace] !== 'undefined') continue;
+			for (const level in this._options.levels) {
+				const log_level: LogLevel = {
+					name: level,
+					number: this.levels.indexOf(level),
+					type: <LogLevelType>this._options.levels[level],
+				};
+
+				this[level][namespace] = (...content: LogContent) => this.log(namespace, log_level, ...content);
+			}
+		}
+	}
+
+	public removeNamespace(namespace: string): void {
+		if (typeof this.info[namespace] === 'undefined') return;
+		for (const level in this._options.levels) {
+			delete this[level][namespace];
+		}
+	}
+
+	public removeNamespaces(namespaces: string[]): void {
+		for (const namespace of namespaces) {
+			if (typeof this.info[namespace] === 'undefined') continue;
+			for (const level in this._options.levels) {
+				delete this[level][namespace];
+			}
+		}
+	}
+
 	public log(namespace: string | null, level: LogLevel, ...content: LogContent): void {
 		const _prepareStackTrace = Error.prepareStackTrace; // eslint-disable-line no-underscore-dangle
 		Error.prepareStackTrace = (_, stack) => stack;
@@ -78,6 +122,10 @@ export default class Logger {
 
 declare module '.' {
 	interface Logger {
+		addNamespace: (namespace: string) => void;
+		addNamespaces: (namespaces: string[]) => void;
+		removeNamespace: (namespace: string) => void;
+		removeNamespaces: (namespaces: string[]) => void;
 		debug: LogFunction
 		verbose: LogFunction;
 		info: LogFunction;
