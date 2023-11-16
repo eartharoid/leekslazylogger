@@ -14,31 +14,31 @@ import { relative } from 'path';
 import { format } from 'util';
 
 export default class Logger {
-	public defaults: LoggerOptions;
-	private _options: LoggerOptions;
+	public static defaults: LoggerOptions = defaults;
 	public levels: Array<string>;
+	#options: LoggerOptions;
 
 	constructor(options: Partial<LoggerOptions> = {}) {
-		this.defaults = defaults;
-		this._options = merge(this.defaults, options);
-		this.levels = Object.keys(this._options.levels);
-		this._init();
+		// (this.constructor as typeof Logger)
+		this.#options = merge(Logger.defaults, options);
+		this.levels = Object.keys(this.#options.levels);
+		this.#init();
 	}
 
-	private _init() {
-		this.levels = Object.keys(this._options.levels);
+	#init(): void {
+		this.levels = Object.keys(this.#options.levels);
 
-		if (this._options.transports.length < 1) throw new Error('At least one logger transport is required. Remove `transports` from your options to use the defaults.');
+		if (this.#options.transports.length < 1) throw new Error('At least one logger transport is required. Remove `transports` from your options to use the defaults.');
 
-		for (const level in this._options.levels) {
+		for (const level in this.#options.levels) {
 			const log_level: LogLevel = {
 				name: level,
 				number: this.levels.indexOf(level),
-				type: <LogLevelType>this._options.levels[level],
+				type: <LogLevelType>this.#options.levels[level],
 			};
 			this[level] = (...content: LogContent) => this.log(null, log_level, ...content);
 
-			for (const namespace of this._options.namespaces) {
+			for (const namespace of this.#options.namespaces) {
 				this[level][namespace] = (...content: LogContent) => this.log(namespace, log_level, ...content);
 			}
 		}
@@ -51,7 +51,7 @@ export default class Logger {
 		const callsite = stack ? stack[2] : null;
 		Error.prepareStackTrace = _prepareStackTrace;
 
-		for (const transport of this._options.transports) {
+		for (const transport of this.#options.transports) {
 			if (level.number >= this.levels.indexOf(transport.level)) {
 				transport.write({
 					column: callsite ? callsite.getColumnNumber() : null,
@@ -66,13 +66,13 @@ export default class Logger {
 		}
 	}
 
-	get options(): Partial<LoggerOptions> {
-		return this._options;
+	get options(): LoggerOptions {
+		return this.#options;
 	}
 
 	set options(options: Partial<LoggerOptions>) {
-		this._options = merge(this._options, options);
-		this._init();
+		this.#options = merge(this.#options, options);
+		this.#init();
 	}
 }
 

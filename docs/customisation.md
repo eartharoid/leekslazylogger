@@ -1,5 +1,19 @@
 # Customisation
 
+Options can be set on initialisation, but are not required.
+You can also use the `options` setter to set options after initialisation.
+The object will be merged deeply with the existing (or default) options.
+
+```js
+log.error.http('this will throw an error');
+log.options = {
+	// in this example only `namespaces` is modified,
+	// so `levels` and `transports` are preserved from existing/default options
+	namespaces: ['http']
+};
+log.success.http('this works');
+```
+
 ## Logger options
 
 ??? summary "Defaults"
